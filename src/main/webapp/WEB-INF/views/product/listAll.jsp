@@ -174,8 +174,9 @@ img:hover {
 
 			<ul>
 				<c:forEach var="kvp" items="${list }">
-					<li><a href="${pageContext.request.contextPath}/product/pRead"
-						id="bimg"> <img alt="" src="${pageContext.request.contextPath}/resources/images/${kvp.pic }" > <br>
+					<li><a href="${pageContext.request.contextPath}/product/pRead" id="bimg">
+					<img src="displayFile?filename=${file }">
+					 <img alt="" src= "spring:url value ='${kvp.pic}'" > <br>
 							<span style="text-decoration: underline;">${kvp.pname} <br>
 								<br>
 						</span> ${kvp.pcontent}<br> <span

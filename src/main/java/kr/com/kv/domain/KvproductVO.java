@@ -94,7 +94,6 @@ public class KvproductVO {
 				+ ", dcprice=" + dcprice + ", color=" + color + ", size=" + size + ", stock=" + stock + ", pic=" + pic
 				+ ", files=" + files + "]";
 	}
-
-	
+		
 	
 }

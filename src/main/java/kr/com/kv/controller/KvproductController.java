@@ -1,5 +1,6 @@
 package kr.com.kv.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,28 +44,27 @@ public class KvproductController<HttpHttpServletRequest> {
 		
 }
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPOST(KvproductVO kvp,List<MultipartFile> imgFiles) throws Exception {
+	public String registerPOST(KvproductVO kvp,List<MultipartFile> imgFiles)throws Exception {
 		logger.info("------------- registerPOST");	
 		logger.info(kvp.toString());
+		
 				
 		ArrayList<String> list = new ArrayList<>();
 		for(MultipartFile file :imgFiles) {
+		
 			logger.info("file name :" + file.getOriginalFilename());
-			logger.info("file size :" + file.getSize());	
-			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-			
-			kvp.setPic(uploadPath + savedName);
-			
-			list.add(savedName);
-			
-			logger.info("------------- registerPOST kvp="+kvp);
-		}
-			
+		logger.info("file size :" + file.getSize());	
+				
+		String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 		
+		kvp.setPic(savedName);
+		logger.info("------------- registerPOST kvp="+kvp);
 		
+		service.register(kvp);		
+						
+		}	
 		
-		service.register(kvp);
-		//jsp가 아니라 controller로 감
+				//jsp가 아니라 controller로 감
 		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
 		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
 		
