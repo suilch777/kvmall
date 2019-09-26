@@ -32,6 +32,9 @@
 		<beans:constructor-arg value="c:/zzz/upload"></beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- 이미지파일 경로설정 -->
+	<resources location="file:///c:/zzz/upload/" mapping="/image/**"></resources>
+	
 	<context:component-scan base-package="kr.com.kv.controller" />
 	
 	<!-- 
