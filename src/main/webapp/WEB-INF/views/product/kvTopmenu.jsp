@@ -119,22 +119,27 @@ display:hidden;
 	<!-- top부분 -->
 	<div id="container">
 		<div id="top">
-		<a href="#">kvmall</a>
-		<a href="productReg.do">상품등록</a>
-		<a href="bord.jsp">고객센타</a>
-		<a href="bord.jsp">장바구니</a> 
-		<a href="timeTable.jsp">나의kvmall</a>
-		
-		<c:if test="${Auth == null }"><!-- 로그아웃 상태 -->
+			<a href="#" id="comlogo">kvmall</a> 
+			<a href="${pageContext.request.contextPath}/product/register">상품등록</a>
+			<a href="bord.jsp">고객센타</a> 
+			<a href="bord.jsp">장바구니</a>
+			 <a href="timeTable.jsp">나의kvmall</a>
+			  <a href="${pageContext.request.contextPath}/member/register">회원가입</a>
+			
+			<!-- 로그인 처리 -->
+			  <c:if test="${Auther == null }"><!-- 로그아웃 상태 -->
 		<a href="join.do">회원가입</a>		
-		<a href="login.do" id="login">로그인</a> 
+		<a href="${pageContext.request.contextPath}/auth/login" id="login">로그인</a> 
 		</c:if>
 		
 		<c:if test="${Auth != null }"><!-- 로그인 상태 -->
 		
-		<a href="logout.do" id="logout"><span id="sp1">${Auth.name }님!</span>&nbsp; &nbsp;로그아웃</a> 
+		<a href="logout.do" id="logout"><span id="sp1">${loginDTO.username}님!</span>&nbsp; &nbsp;로그아웃</a> 
 		</c:if>
+			 			 
 		</div>
+		
+		
 		<hr id="hr1">
 		<div id="top2">
 		

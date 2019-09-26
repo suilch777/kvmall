@@ -10,5 +10,7 @@ public interface KvproductService {
 	public void register(KvproductVO kvp) throws Exception;
 
 	public List<KvproductVO> listAll()throws Exception;
+	
+	public KvproductVO read(String pcode) throws Exception;
 
 }

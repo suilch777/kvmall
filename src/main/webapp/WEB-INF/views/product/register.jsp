@@ -27,30 +27,33 @@ input{
 	margin-right: 100px;
 }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 
 <script>
 	$(function() {
-		$("#f1").submit(function() {
+	/* 	$("button[type=button]").click(function() {
+			alert("   ");
 			$(".error").css("display", "none");
 
 			//빈 input태그가 존재하면 submit을 막도록 한다.
 			if (checkInputEmpty($("input[name]")) == false) {
 				return false;
 			}
-		})
+			
+			alert("   ");
+			$("#f1").submit();
+		}) */
 	})
 </script>
 </head>
 <body>
 <div>
-	<form action="${pageContext.request.contextPath}/product/register"
-		method="post" id="f1">
+	<form action="register"	method="post" id="f1" enctype="multipart/form-data">
 		
 				
 		<p>
-			<label>상품코드</label> <input type="text" name="pcode" size="50" value="p"+"">
+			<label>상품코드</label> <input type="text" name = "pcode" size="50" value="p">
 			<!--  <span class="error">프로젝트 이름을 입력하세요.</span>  -->
 		</p>
 		<p>
@@ -90,14 +93,14 @@ input{
 			</select>
 		</p>
 		<p>
-			<label>사진</label><input type="file" name ="pic" value="등록">
+			<label>사진</label><input type="file" name ="imgFiles" value="등록" multiple="multiple">
 		</p>
 		
 		<p>
 			<label>상품갯수</label><input type="number" name ="stock" >
 		</p>
 		<p>
-			<input type="submit" value="상품등록">
+			<button type="submit">상품등록</button>
 		</p>
 	</form>
 

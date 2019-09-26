@@ -21,6 +21,17 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 파일 업로드에 필요한 bean -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 파일 업로드 용량 -->
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	<!-- 파일업로드할 디렉토리설정 -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+	<!-- 파일 업로드 디렉토리 -->
+		<beans:constructor-arg value="c:/zzz/upload"></beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="kr.com.kv.controller" />
 	
 	<!-- 

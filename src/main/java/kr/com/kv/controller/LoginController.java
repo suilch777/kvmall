@@ -40,7 +40,7 @@ public class LoginController {
 		
 		if(dbMember == null) {
 			logger.info("loginPOST ...... login fail, not member");
-			return "login";
+			return "auth/login";
 		}
 		else {
 						
@@ -55,7 +55,7 @@ public class LoginController {
 		
 		logger.info("-------- login POST, model= "+model);
 		
-		return "index";
+		return "product/listAll";
 	}
 }
 }

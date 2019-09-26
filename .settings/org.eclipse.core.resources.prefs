@@ -6,4 +6,5 @@ encoding//src/kr/km/util/CharacterEncodingFilter.java=UTF-8
 encoding//src/kr/km/util/LoginCheckFilter.java=UTF-8
 encoding//src/kr/km/util/MySqlSessionFactory.java=UTF-8
 encoding//src/main/java/kr/com/kv/domain/KvproductPage.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
 encoding/src=UTF-8

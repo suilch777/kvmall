@@ -15,7 +15,11 @@
 		select * from product
 	</select>
 	
+	<select id="read" resultType="KvproductVO">
+	select * from product
+	where pcode =#{pcode}
 	
+	</select>
 	
 	
 	

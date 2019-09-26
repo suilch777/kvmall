@@ -10,5 +10,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<h1><a href="${pageContext.request.contextPath}/product/listAll ">List</a></h1>
 </body>
 </html>

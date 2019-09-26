@@ -1,6 +1,8 @@
 package kr.com.kv.domain;
 
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -13,8 +15,24 @@ public class KvproductVO {
 	private int dcprice;
 	private String color;
 	private int size;
-	private String pic;
 	private int stock;
+	private String pic;
+	private List<String> files;
+	
+	
+	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public List<String> getFiles() {
+		return files;
+	}
+	public void setFiles(List<String> files) {
+		this.files = files;
+	}
 	public int getStock() {
 		return stock;
 	}
@@ -66,21 +84,17 @@ public class KvproductVO {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public String getPic() {
-		return pic;
-	}
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setfiles(ArrayList<String> list) {
+		// TODO Auto-generated method stub
+		
 	}
 	@Override
 	public String toString() {
-		return "Kvproduct [pcode=" + pcode + ", pname=" + pname + ", pcontent=" + pcontent + ", price=" + price
-				+ ", dcprice=" + dcprice + ", color=" + color + ", size=" + size + ", pic=" + pic + ", stock=" + stock
-				+ "]";
+		return "KvproductVO [pcode=" + pcode + ", pname=" + pname + ", pcontent=" + pcontent + ", price=" + price
+				+ ", dcprice=" + dcprice + ", color=" + color + ", size=" + size + ", stock=" + stock + ", pic=" + pic
+				+ ", files=" + files + "]";
 	}
-	
-	
-	
+
 	
 	
 }

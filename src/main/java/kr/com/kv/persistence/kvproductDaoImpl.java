@@ -30,6 +30,12 @@ private static final String namespace = "kr.com.kv.mappers.KvproductMapper";
 		return sqlSession.selectList(namespace+".listAll");
 	}
 
+	@Override
+	public KvproductVO read(String pcode) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".read", pcode);
+	}
+
 		
 
 }
