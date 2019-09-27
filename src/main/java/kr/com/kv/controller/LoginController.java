@@ -3,6 +3,7 @@ package kr.com.kv.controller;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class LoginController {
 	
 	@Autowired
 	MemberService service;
+
+	private String msg;
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public void loginGET() {
@@ -55,10 +58,26 @@ public class LoginController {
 		
 		logger.info("-------- login POST, model= "+model);
 		
-		return "product/listAll";
+		return "redirect:/product/listAll";
 	}
 }
-}
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		logger.info("-------- logout GET");
+		alert(msg);
+	     
+		session.removeAttribute("Auther");
+	        // /페이지로 리다이렉트 시킨다.
+	        return "redirect:/product/listAll";
+	    }
+
+	private void alert(String string) {
+		msg = "로그아웃 하시겠습닜까?";
+		
+	}
+	}
+
 
 
 

@@ -2,6 +2,9 @@ package kr.com.kv.controller;
 
 import java.io.Console;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -9,14 +12,20 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.com.kv.domain.KvproductVO;
@@ -72,6 +81,49 @@ public class KvproductController<HttpHttpServletRequest> {
 		
 	}
 	
+	@RequestMapping(value="/displayFile", method=RequestMethod.GET)
+	public @ResponseBody ResponseEntity<byte[]> displayFile(String filename){
+		logger.info("-------------- displayFile, filename="+filename);
+		
+		String formatName = filename.substring(filename.lastIndexOf(".")+1);//확장자만 뽑아냄
+		MediaType mType = null;
+		ResponseEntity<byte[]> entity = null;
+		
+		if(formatName.equalsIgnoreCase("jpg")) {
+			mType = MediaType.IMAGE_JPEG;
+		}else if(formatName.equalsIgnoreCase("gif")) {
+			mType = MediaType.IMAGE_GIF;
+		}else if(formatName.equalsIgnoreCase("png")) {
+			mType = MediaType.IMAGE_PNG;
+		}
+		InputStream in = null;
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			in = new FileInputStream(uploadPath+"/"+filename);
+			headers.setContentType(mType);
+			
+			entity = new ResponseEntity<byte[]>(
+												IOUtils.toByteArray(in),
+												headers,
+												HttpStatus.CREATED
+												);		
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);			
+		}finally {
+			if(in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return entity;
+	}
+	
 	@RequestMapping(value="listAll", method=RequestMethod.GET)
 	public void listAll(Model model) throws Exception {
 		logger.info("------------ listAll");
@@ -89,6 +141,10 @@ public class KvproductController<HttpHttpServletRequest> {
 		KvproductVO vo = service.read(pcode);
 		
 		logger.info("-------------- read, pcode="+pcode);
+		
+		logger.info("-------------- read, vo="+vo);
+		
+		
 		model.addAttribute("kvp", vo);
 		
 	}

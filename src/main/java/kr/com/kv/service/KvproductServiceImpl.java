@@ -29,8 +29,8 @@ public class KvproductServiceImpl implements KvproductService {
 
 	@Override
 	public KvproductVO read(String pcode) throws Exception {
-		KvproductVO vo = dao.read(pcode);
-		return null;
+		return dao.read(pcode);
+		
 	}
 
 	
