@@ -27,8 +27,8 @@
 	position: fixed;
 	width: 75%;
 	text-align: center;
-	background: white;
-	opacity: 0.5;
+	/* background: white;
+	opacity: 0.5; */
 }
 
 #comlogo {
@@ -50,6 +50,8 @@ a#tmenu {
 
 #slide {
 	border: 1px solid #000;
+	width: 700px;
+	height: 400px;
 }
 
 #content1 {
@@ -63,6 +65,7 @@ a#tmenu {
 	display: inline-block;
 	font-size: 12px;
 	margin: 10px 0;
+	text-align: center;
 }
 
 /*=============== 헤더부분  끝지점 =======================*/
@@ -85,7 +88,7 @@ overflow: hidden;
 }
 #pwrap {
 	display: inline-block;
-	width: 24%;
+	width: 300px;
 	height: 500px;
 	text-align: left;
 }
@@ -164,7 +167,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 			<img id="slide"
 				src="${pageContext.request.contextPath}/resources/images/slide-1.jpg"
-				name="slide" width="600" height="500"> <br>
+				name="slide" > <br>
 		</div>
 		<script type="text/javascript">
 			var step=1;
@@ -179,6 +182,27 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				setTimeout("slideit()",2500);
 			}
 			slideit();
+			
+			</script>
+			<div id="content2">
+
+			<img id="slide"
+				src="${pageContext.request.contextPath}/resources/images/p1.jpg"
+				name="slide" > <br>
+		</div>
+		<script type="text/javascript">
+				var step=1;
+				function slideit2(){
+					if (!document.images)
+						return
+					document.images.slide.src=eval("image"+step+".src");
+					if(step<3)
+						step++;
+					else 
+						step=1;
+					setTimeout("slideit()",2500);
+				}
+				slideit2();
 			
 			</script>
 
