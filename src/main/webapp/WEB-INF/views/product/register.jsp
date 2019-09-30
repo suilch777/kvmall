@@ -100,6 +100,11 @@ input{
 			<label>상품갯수</label><input type="number" name ="stock" >
 		</p>
 		<p>
+			<label>mid</label> <input type="text" name = "mid"  value="${Auther.userid}">
+			
+		</p>
+		
+		<p>
 			<button type="submit">상품등록</button>
 		</p>
 	</form>

@@ -84,6 +84,10 @@ public class KvproductController<HttpHttpServletRequest> {
 	@RequestMapping(value="/displayFile", method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity<byte[]> displayFile(String filename){
 		logger.info("-------------- displayFile, filename="+filename);
+		String ofn=filename.substring(0,12)+filename.substring(14);
+		
+		logger.info("-------------- displayFile, ofn="+ofn);
+		
 		
 		String formatName = filename.substring(filename.lastIndexOf(".")+1);//확장자만 뽑아냄
 		MediaType mType = null;
@@ -99,7 +103,7 @@ public class KvproductController<HttpHttpServletRequest> {
 		InputStream in = null;
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			in = new FileInputStream(uploadPath+"/"+filename);
+			in = new FileInputStream(uploadPath+"/"+ofn);
 			headers.setContentType(mType);
 			
 			entity = new ResponseEntity<byte[]>(

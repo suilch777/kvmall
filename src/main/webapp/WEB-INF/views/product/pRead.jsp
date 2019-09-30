@@ -7,26 +7,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- head부분 시작 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<style type="text/css">
+
+<style>
+
+* {
+	margin: 0 auto;
+}
 #bodyall {
-	margin: 0 auto; width : 100%;
+	width : 75%;
 	position: relative;
-	width: 100%;
+	
 }
 
-#container {
-	width: 75%;
-}
-
-div#top {
-	width: 75%;
+#top{
+position: fixed;
+width: 75%;
+	text-align: center;
+	background: white;
+	opacity: 0.5;
 }
 
 #comlogo {
 	float: left;
 	color: red;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 a#tmenu {
@@ -44,10 +52,10 @@ a#tmenu {
 }
 
 #content1 {
-	
+	display: inline-block;
 	font-size: 12px;
-	margin: 10px 0;
 	text-align: center;
+	margin-top: 50px;
 }
 
 #content2 {
@@ -63,19 +71,32 @@ hr#hr1 {
 }
 
 img {
-	width: 75%;
+	width: 100%;
 }
 
 #pbuyform {
 
-margin-top50px;
-	position: absolute;
-	top: 150px;
-	right: 10px;
-	background-color: #D8D8D8;
-	width: 300px;
-	height: 800px;
+	position: fixed;
 	
+	top: 50px;
+	right: 10px;
+	width: 200px;
+	height: 700px;
+	font-size: 20px;
+	border: 1 px solid #D8D8D8s;
+	background-color: white;
+	opacity: 0.5;
+	
+}
+#pbuyformin{
+display: none;
+}
+
+#buybtn{
+border-radius:10px;
+width: 200px;
+height: 50px;
+background: red;
 }
 #body1{
 	text-align: center;;
@@ -130,14 +151,14 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
 				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
-					id="logout"><span id="sp1">${loginDTO.username}님!</span>&nbsp;
+					id="logout"><span id="sp1">${Auther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
 			</c:if>
 
 		</div>
 	</div>
 
-	<hr id="hr1">
+<!--  	<hr id="hr1"> -->
 
 
 	<div id="content1">
@@ -163,7 +184,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			</script>
 
 
-	<hr id="hr2">
+	<!--  <hr id="hr2"> -->
 
 	<div id="body1">
 
@@ -174,16 +195,61 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 	<div id="pbuyform">
 		<form action="">
-		<label>상품코드</label> <br> <br><br> <br>
-		<span style="text-decoration: underline;">${kvp.pname}</span> <br><br> <br>
-		<br> ${kvp.pcontent}<br><br> <br>
+		<label></label><input type="text" name="pcode" value="${kvp.pcode}" id="pbuyformin"> <br> 
+		<span style="text-decoration: underline;">${kvp.pname}<input type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span> <br>
+		<br> ${kvp.pcontent}<br><br><br><br>
 		<label>가격</label><span
-			style="text-decoration: line-through;"> &#92;${kvp.price} </span><br> <br><br> <br>
+			style="text-decoration: line-through;"> &#92;${kvp.price} </span>
+			<input type="number" name="price" value="${kvp.price}"  id="pbuyformin"><br> <br> 
 		<label>할인가</label>
-			&#92; ${kvp.dcprice}<br> <br> <br>
-		</form>
+			&#92; ${kvp.dcprice} <input type="number" name="price" value="${kvp.dcprice}"  id="pbuyformin"><br> <br> 
+			<label>색상</label>&nbsp; <select name= "color">
+			<option value="흰색">흰색</option>
+			<option value= "빨강">빨강</option>
+			<option value="파랑">파랑</option>
+			<option value="검정">검정</option>
+			
+			</select>
+			<br><br> 
+		<label>사이즈</label> <select name= "size">
+			<option value="85">85</option>
+			<option value= "90">90</option>
+			<option value="95">95</option>
+			<option value="100">100</option>
+			
+			</select>
+		<br><br> 
+		<label>수량</label><select id="count">
+		     
+					<c:forEach var="i" begin="1" end="10">
+						<option>${i }</option>
+					</c:forEach>
+				</select>
+		
+		<br>
+		<script type="text/javascript">
+		
+		var count = $("#count").val();
+		var price= ${kvp.dcprice};
+		
+		alert(count);
+		alert(price);
+		var sum = count*price;
+		alert(sum);
+		
+		</script>
+	
+		
+		<label>총합계금액(수량)</label> 
+		
+		
+		<input type="button" name="buybtn" value="바로구매" id="buybtn"><br><br> 
+		<input type="button" name="cartbtn" value="장바구니담기">
+		<input type="button" name="wishbtn" value="찜하기" >
+				</form>
 	
 			 
 	</div>
+	
 </body>
 </html>

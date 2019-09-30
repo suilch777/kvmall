@@ -11,25 +11,31 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-<style type="text/css">
-
- 
+<style>
 * {
 	margin: 0 auto;
+	padding: 0;
 }
 
 #bodyall {
 	width: 75%;
+	position: relative;
 }
 
-div#top {
+#top {
+	margin-top:5px;
+	position: fixed;
 	width: 75%;
+	text-align: center;
+	background: white;
+	opacity: 0.5;
 }
 
 #comlogo {
 	float: left;
 	color: red;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 a#tmenu {
@@ -49,7 +55,7 @@ a#tmenu {
 #content1 {
 	display: inline-block;
 	font-size: 12px;
-	margin: 10px 0;
+	margin-top: 50px;
 	text-align: center;
 }
 
@@ -57,11 +63,9 @@ a#tmenu {
 	display: inline-block;
 	font-size: 12px;
 	margin: 10px 0;
-	
 }
 
 /*=============== 헤더부분  끝지점 =======================*/
-
 hr#hr1 {
 	clear: both;
 	width: 100%;
@@ -76,29 +80,29 @@ ul {
 	float: left;
 	margin-top: 50px;
 }
-
+li{
+overflow: hidden;
+}
 #pwrap {
-padding:20px;
 	display: inline-block;
-	width: 300px;
+	width: 24%;
 	height: 500px;
 	text-align: left;
 }
 
 #pbodya {
 	text-decoration: none;
-	color:gray;
+	color: gray;
 }
 
 #pimg {
-	width: 250px;
-	height: 250px;
+	width: 280px;
+	height: 280px;
 }
 
 #pimg:hover {
-	width: 260px;
-	height: 260px;
-	
+	width: 290px;
+	height: 290px;
 }
 
 hr#hr2 {
@@ -146,7 +150,8 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout" id="logout"><span id="sp1">${loginDTO.username}님!</span>&nbsp;
+				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
+					id="logout"><span id="sp1"> ${Auther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
 			</c:if>
 
@@ -184,16 +189,13 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<div>
 				<ul>
 					<c:forEach var="kvp" items="${list }">
-						<li id="pwrap">
-							<a id="pbodya" href="pRead?pcode=${kvp.pcode}" id="bimg"> 
-											
-							 <img id="pimg" alt=""
-								src="displayFile?filename=${kvp.pic}"> 
-								<br> <span style="text-decoration: underline;">${kvp.pname}</span> <br>
+						<li id="pwrap"><a id="pbodya" href="pRead?pcode=${kvp.pcode}"
+							id="bimg"> <img id="pimg" alt=""
+								src="displayFile?filename=${kvp.pic}"> <br> <span
+								style="text-decoration: underline;">${kvp.pname}</span> <br>
 								<br> ${kvp.pcontent}<br> <span
 								style="text-decoration: line-through;"> &#92;${kvp.price}
 							</span>할인가 &#92; ${kvp.dcprice}<br> <br> <br>
-
 						</a></li>
 
 					</c:forEach>

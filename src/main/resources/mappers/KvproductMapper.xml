@@ -7,8 +7,8 @@
 	<insert id="register" >
 				
 		INSERT INTO product
-		(pcode, pname, pcontent, price, dcprice, color, size, pic,stock)
-		VALUES(#{pcode},#{pname}, #{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic}, #{stock});
+		(pcode, mid, pname, pcontent, price, dcprice, color, size, pic,stock)
+		VALUES(#{pcode},#{mid}, #{pname}, #{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic}, #{stock});
 	</insert>
 	
 	<select id="listAll" resultType="KvproductVO">

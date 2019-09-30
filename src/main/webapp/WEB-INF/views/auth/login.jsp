@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.login-box{
+text-align: center;
+margin-top: 200px;
+}
+
+</style>
  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -30,7 +37,7 @@
 <body class="login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="#"><b>영남인재교육원</b> Project</a>
+			<a href="#"><b>kvmall</b> Project</a>
 		</div>
 		<div class="login-box-body">
 			<p class="login-box-msg">Sign in to start your session</p>

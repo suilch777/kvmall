@@ -54,7 +54,7 @@ public class LoginController {
 		model.addAttribute("loginDTO", dto);
 		
 		
-		session.setAttribute("Auther", "model");
+		session.setAttribute("Auther", dto);
 		
 		logger.info("-------- login POST, model= "+model);
 		

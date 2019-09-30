@@ -9,6 +9,7 @@ import java.util.List;
 
 public class KvproductVO {
 	private String pcode;
+	private String mid;
 	private String pname;
 	private String pcontent;
 	private int price;
@@ -21,6 +22,12 @@ public class KvproductVO {
 	
 	
 	
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 	public String getPic() {
 		return pic;
 	}
@@ -90,10 +97,11 @@ public class KvproductVO {
 	}
 	@Override
 	public String toString() {
-		return "KvproductVO [pcode=" + pcode + ", pname=" + pname + ", pcontent=" + pcontent + ", price=" + price
-				+ ", dcprice=" + dcprice + ", color=" + color + ", size=" + size + ", stock=" + stock + ", pic=" + pic
-				+ ", files=" + files + "]";
+		return "KvproductVO [pcode=" + pcode + ", mid=" + mid + ", pname=" + pname + ", pcontent=" + pcontent
+				+ ", price=" + price + ", dcprice=" + dcprice + ", color=" + color + ", size=" + size + ", stock="
+				+ stock + ", pic=" + pic + ", files=" + files + "]";
 	}
+	
 		
 	
 }
