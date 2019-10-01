@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.com.kv.domain.KvproductVO;
+import kr.com.kv.domain.CartVO;
 import kr.com.kv.persistence.kvproductDao;
 
 @Service
@@ -32,7 +33,6 @@ public class KvproductServiceImpl implements KvproductService {
 		return dao.read(pcode);
 		
 	}
-
 	
 		
 	}

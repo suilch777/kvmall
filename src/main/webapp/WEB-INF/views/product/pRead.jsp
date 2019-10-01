@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,16 +85,18 @@ img {
 	height: 700px;
 	font-size: 14px;
 	border: 1 px solid #D8D8D8s;
-	
 }
-#pbfname{
-font-size: 16px;
-font-weight: bold;
+
+#pbfname {
+	font-size: 16px;
+	font-weight: bold;
 }
-#output{
-font-size: 16px;
-font-weight: bold;
+
+#output {
+	font-size: 16px;
+	font-weight: bold;
 }
+
 #pbuyformin {
 	display: none;
 }
@@ -110,8 +112,43 @@ font-weight: bold;
 	text-align: center;;
 }
 </style>
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+	 <script type="text/javascript">
+		$(function() {
+			$("#regcart").click(function() {
+				var mid = "${kvp.mid}";
+				var pcode = "${kvp.pcode}";
+				var pname = "${kvp.pname}";
+				var cnt = $("#count").val();
+				
+				
+				$.ajax({
+					async : true,
+					type : "post",
+					data : {
+						"rmemberid" : mid,
+						"pcode" : pcode,
+						"pname" : pname,
+						"cnt" : cnt 
+					},
+					url : "${pageContext.request.contextPath}/cart/register",
+					dataType : "json",
+					success : function(data) {
+						console.log(data);
+					}
+
+				});
+			});
+		});
+	</script>
+	
+	
+
+	
 
 <script type="text/javascript">
 var image1=new Image();
@@ -173,7 +210,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 		<img id="slide"
 			src="${pageContext.request.contextPath}/resources/images/slide-1.jpg"
-			name="slide" > <br>
+			name="slide"> <br>
 	</div>
 	<script type="text/javascript">
 			var step=1;
@@ -190,14 +227,14 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			slideit();
 			
 			</script>
-			
-			<div id="content2">
 
-			<img id="slide"
-				src="${pageContext.request.contextPath}/resources/images/p1.jpg"
-				name="slide" > <br>
-		</div>
-		<script type="text/javascript">
+	<div id="content2">
+
+		<img id="slide"
+			src="${pageContext.request.contextPath}/resources/images/p2.jpg"
+			name="slide"> <br>
+	</div>
+	<script type="text/javascript">
 				var step=1;
 				function slideit2(){
 					if (!document.images)
@@ -223,42 +260,46 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 	<div id="pbuyform">
-		<form action="">
-			<label></label><input type="text" name="pcode" value="${kvp.pcode}"
-				id="pbuyformin"> <br> <span id="pbfname"
-				style="text-decoration: underline;">${kvp.pname}<input
+		<form action="/cart/register" method="post">
+			<input type="hidden" name="mid" value="${kvp.mid }"> <label></label><input
+				type="text" name="pcode" value="${kvp.pcode}" id="pbuyformin">
+			<br> <span id="pbfname" style="text-decoration: underline;">${kvp.pname}<input
 				type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span>
-			<br><br><br>
-			 ${kvp.pcontent}<br><br><br>
-	 		<label>가격</label><span
+			<br>
+			<br>
+			<br> ${kvp.pcontent}<br>
+			<br>
+			<br> <label>가격</label><span
 				style="text-decoration: line-through;"> &#92;${kvp.price} </span> <input
-				type="number" name="price" value="${kvp.price}" id="pbuyformin"><br><br>
-			 <label>할인가</label> &#92; ${kvp.dcprice} <input
-				type="number" name="price" value="${kvp.dcprice}" id="pbuyformin"><br><br><br>
-			 <label>색상</label>&nbsp; <select name="color">
+				type="number" name="price" value="${kvp.price}" id="pbuyformin"><br>
+			<br> <label>할인가</label> &#92; ${kvp.dcprice} <input
+				type="number" name="dcprice" value="${kvp.dcprice}" id="pbuyformin"><br>
+			<br>
+			<br> <label>색상</label>&nbsp; <select name="color">
 				<option value="흰색">흰색</option>
 				<option value="빨강">빨강</option>
 				<option value="파랑">파랑</option>
 				<option value="검정">검정</option>
 
-			</select> <br><br>
-		     <label>사이즈</label> <select name="size">
+			</select> <br>
+			<br> <label>사이즈</label> <select name="size">
 				<option value="85">85</option>
 				<option value="90">90</option>
 				<option value="95">95</option>
 				<option value="100">100</option>
-			</select> 
-			<br><br> <label>수량</label><select id="count">
-
+			</select> <br>
+			<br> <label>수량</label><select id="count">
 				<c:forEach var="i" begin="1" end="10">
-					<option><c:out value="${i }" /></option>
+					<option><c:out value="${i}" /></option>
 				</c:forEach>
-			</select>
-
-			<br><br>
+			</select> <br>
+			<br> <label>총&nbsp;합계금액&nbsp;(수량)</label> <br>
+			<br>
+			<div id="output"></div>
+			
 			<script type="text/javascript">
 				$("#count").change(onSelectChange); //select  id를 이용하여 셀렉트 변경시마다 onSelectChange함수 실행
-
+				$("#count").change();
 				function onSelectChange() {
 					var selected = $("#count option:selected");
 					var output = "";
@@ -268,32 +309,36 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 					var num = output;
 					var price = ${kvp.dcprice};
 					var sum = num * price;
-						
+
 					function numberWithCommas(x) {
-					    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
 					}
 
-
-					
-					
-					$("#output").html("&#8361;" + numberWithCommas(sum) +"원"+"&nbsp;("+ num + ")"); //div에 output 변수에 담은 text HTML로 출력하기
+					$("#output").html(
+							"&#8361;" + numberWithCommas(sum) + "원" + "&nbsp;("	+ num + ")"); //div에 output 변수에 담은 text HTML로 출력하기
+						
+							
 				}
 			</script>
 
-			<label>총&nbsp;합계금액&nbsp;(수량)</label> <br><br>
-			<div id="output">원</div>
-<br><br>
-
-
-
-
-			<input type="button" name="buybtn" value="바로구매" id="buybtn"><br>
-			<br> <input type="button" name="cartbtn" value="장바구니담기">
-			<input type="button" name="wishbtn" value="찜하기">
+			
+			<br>
+			<br> <input type="submit" name="buybtn" value="바로구매" id="buybtn"><br>
 		</form>
+			<br> <input type="button" name="cartbtn" value="장바구니담기"
+				id="regcart"> <input type="button" name="wishbtn"
+				value="찜하기">
+		
+
+
 
 
 	</div>
+
+
+	
+	${kvp.mid}
+
 
 </body>
 </html>
