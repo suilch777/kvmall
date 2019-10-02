@@ -12,6 +12,11 @@ public interface CartDao {
 
 	public CartDao read(String memberid)throws Exception;
 
-	public void register(CartVO crt)throws Exception;
+	public int register(CartVO crt)throws Exception;
+
+	public void register(String memberid);
+
+	public int saleregister(CartVO crt);
+	
 
 }

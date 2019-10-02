@@ -1,29 +1,41 @@
 package kr.com.kv.domain;
 
 public class CartVO {
-	private String rmemberid;
-	private KvproductVO pcode;
-	private KvproductVO pname;
+	private String cmid;
+	private String smid;
+	private String pcode;
+	private String pname;
 	private int cnt;
 	
-	public String getRmemberid() {
-		return rmemberid;
+	
+
+	
+	public String getCmid() {
+		return cmid;
 	}
-	public void setRmemberid(String rmemberid) {
-		this.rmemberid = rmemberid;
+	public void setCmid(String cmid) {
+		this.cmid = cmid;
 	}
-	public KvproductVO getPcode() {
+	public String getSmid() {
+		return smid;
+	}
+	public void setSmid(String smid) {
+		this.smid = smid;
+	}
+	public String getPcode() {
 		return pcode;
 	}
-	public void setPcode(KvproductVO pcode) {
+	public void setPcode(String pcode) {
 		this.pcode = pcode;
 	}
-	public KvproductVO getPname() {
+	public String getPname() {
 		return pname;
 	}
-	public void setPname(KvproductVO pname) {
+	public void setPname(String pname) {
 		this.pname = pname;
 	}
+	
+	
 	public int getCnt() {
 		return cnt;
 	}
@@ -32,9 +44,9 @@ public class CartVO {
 	}
 	@Override
 	public String toString() {
-		return "cartVO [rmemberid=" + rmemberid + ", pcode=" + pcode + ", pname=" + pname + ", cnt=" + cnt + "]";
+		return "CartVO [cmid=" + cmid + ", smid=" + smid + ", pcode=" + pcode + ", pname=" + pname + ", cnt=" + cnt
+				+ "]";
 	}
-
 	
 	
 }

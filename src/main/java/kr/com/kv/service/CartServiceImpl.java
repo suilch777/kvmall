@@ -14,9 +14,19 @@ public class CartServiceImpl implements CartService {
 
 	
 	@Override
-	public void register(CartVO crt) throws Exception {
-		dao.register(crt);
+	public int register(CartVO crt) throws Exception {
+		return dao.register(crt);
+		
 
 	}
+
+
+	@Override
+	public int saleregister(CartVO crt) {
+		// TODO Auto-generated method stub
+		return dao.saleregister(crt);
+	}
+
+
 
 }

@@ -28,9 +28,21 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public void register(CartVO crt) throws Exception {
-		sqlSession.insert(namespace + ".register",crt);
+	public int register(CartVO crt) throws Exception {
+		return sqlSession.insert(namespace + ".register",crt);
 
+	}
+
+	@Override
+	public void register(String memberid) {
+		sqlSession.insert(namespace + ".register",memberid);
+		
+	}
+
+	@Override
+	public int saleregister(CartVO crt) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + ".register",crt);
 	}
 
 }

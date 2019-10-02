@@ -7,9 +7,9 @@
 	<insert id="register">
 
 		INSERT INTO product
-		(pcode, mid, pname, pcontent, price, dcprice, color,
+		(pcode, smemberid, pname, pcontent, price, dcprice, color,
 		size, pic,stock)
-		VALUES(#{pcode},#{mid}, #{pname},
+		VALUES(#{pcode},#{smemberid}, #{pname},
 		#{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic},
 		#{stock});
 	</insert>

@@ -4,6 +4,10 @@ import kr.com.kv.domain.CartVO;
 
 public interface CartService {
 	
-	public void register(CartVO crt)throws Exception ;
+	public int register(CartVO crt)throws Exception ;
+
+	public int saleregister(CartVO crt);
+
+	
 
 }

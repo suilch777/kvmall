@@ -116,29 +116,74 @@ img {
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	
-	 <script type="text/javascript">
+	<script type="text/javascript">
+	 
+	//=================== 장바구니 담기  ==============================
 		$(function() {
 			$("#regcart").click(function() {
-				var mid = "${kvp.mid}";
+				 var rmemberid = "${kvp.smemberid}";
 				var pcode = "${kvp.pcode}";
 				var pname = "${kvp.pname}";
-				var cnt = $("#count").val();
+				var cnt = $("#count").val(); 
 				
 				
-				$.ajax({
-					async : true,
+				/* var list ={
+					rmemberid :"${kvp.smemberid}",
+				 	pcode : "${kvp.pcode}",
+					pname :"${kvp.pname}",
+					cnt : $("#count").val()
+				}; */
+				
+				$.ajax({					
 					type : "post",
 					data : {
-						"rmemberid" : mid,
-						"pcode" : pcode,
+						"rmemberid" : rmemberid,
+					 	"pcode" : pcode,
 						"pname" : pname,
-						"cnt" : cnt 
+						"cnt" : cnt  
 					},
 					url : "${pageContext.request.contextPath}/cart/register",
-					dataType : "json",
+					dataType : "Json",
 					success : function(data) {
-						console.log(data);
+						alert("장바구니에 담았습니다!");
+					}
+
+				});
+			});
+		});
+
+		
+//===============================구매하기 ==================================
+		$(function() {
+			$("#buybtn").click(function() {
+				 var rmemberid = "${kvp.smemberid}";
+				 var smemberid = "${kvp.smemberid}";
+				var pcode = "${kvp.pcode}";
+				var pname = "${kvp.pname}";
+				var cnt = $("#count").val(); 
+				var price = "${kvp.price}";
+				
+				
+				/* var list ={
+					rmemberid :"${kvp.smemberid}",
+				 	pcode : "${kvp.pcode}",
+					pname :"${kvp.pname}",
+					cnt : $("#count").val()
+				}; */
+				
+				$.ajax({					
+					type : "post",
+					data : {
+						"smemberid" : smemberid,
+					 	"pcode" : pcode,
+						"pname" : pname,
+						"cnt" : cnt,
+						"price":price
+					},
+					url : "${pageContext.request.contextPath}/cart/register",
+					dataType : "Json",
+					success : function(data) {
+						alert("결재에 성공 했습니다!");
 					}
 
 				});
@@ -261,7 +306,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 	<div id="pbuyform">
 		<form action="/cart/register" method="post">
-			<input type="hidden" name="mid" value="${kvp.mid }"> <label></label><input
+			<input type="hidden" name="smemberid" value="${kvp.smemberid}"> <label></label><input
 				type="text" name="pcode" value="${kvp.pcode}" id="pbuyformin">
 			<br> <span id="pbfname" style="text-decoration: underline;">${kvp.pname}<input
 				type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span>
@@ -323,10 +368,11 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 			
 			<br>
-			<br> <input type="submit" name="buybtn" value="바로구매" id="buybtn"><br>
+			<br>
 		</form>
-			<br> <input type="button" name="cartbtn" value="장바구니담기"
-				id="regcart"> <input type="button" name="wishbtn"
+		 <input type="submit" name="buybtn" value="바로구매" id="buybtn"><br>
+			<br> <input type="button" name="cartbtn" value="장바구니담기"id="regcart"> 
+				<input type="button" name="wishbtn"
 				value="찜하기">
 		
 
@@ -337,7 +383,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 	
-	${kvp.mid}
+	${kvp.smemberid}
 
 
 </body>

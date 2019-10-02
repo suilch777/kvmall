@@ -4,12 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.com.kv.mappers.CartMapper">
 
-<insert id="register">
+	<insert id="register">
 
 		INSERT INTO kvmall.cart
-		(rmemberid, pcode, pname, cnt)
-		VALUES(#{rmemberid}, #{pcode}, #{pname}, #{cnt});
+		(cmid, pcode, pname, cnt)
+		VALUES(#{cmid}, #{pcode}, #{pname}, #{cnt});
+	</insert>
 
+	<insert id="saleregister">
+		INSERT INTO kvmall.salelist
+		(pcode, smid,cmid, pname, pric, cnt)
+		VALUES(#{pcode}, #{smid},#{cmid}, #{pname}, #{pric},#{cnt});
 
 	</insert>
 
