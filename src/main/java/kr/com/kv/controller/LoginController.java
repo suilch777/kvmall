@@ -12,9 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.com.kv.domain.CmemberVO;
 import kr.com.kv.domain.LoginDTO;
 import kr.com.kv.domain.MemberVO;
-import kr.com.kv.service.MemberService;
+import kr.com.kv.service.CmemberService;
 
 
 
@@ -24,7 +25,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
-	MemberService service;
+	CmemberService service;
 
 	private String msg;
 	
@@ -37,19 +38,21 @@ public class LoginController {
 	public String loginPOST(LoginDTO member, Model model, HttpSession session) {
 		logger.info("-------- login POST,"+member);
 		
-		MemberVO dbMember = service.selectMemberByIdAndPw(member.getUserid(), member.getUserpw());
+		CmemberVO dbMember = service.selectMemberByIdAndPw(member.getUserid(), member.getUserpw());
 		
 		logger.info("-------- login POST, dbMember= "+dbMember);
 		
 		if(dbMember == null) {
 			logger.info("loginPOST ...... login fail, not member");
-			return "auth/login";
+		
+			return "auth/loginPost";
+			
 		}
 		else {
 						
 			
 		LoginDTO dto = new LoginDTO();
-		dto.setUserid(dbMember.getMemberid());
+		dto.setUserid(dbMember.getCmid());
 		dto.setUsername(dbMember.getName());
 		model.addAttribute("loginDTO", dto);
 		

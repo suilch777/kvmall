@@ -39,80 +39,84 @@ span {
 	href="${pageContext.request.contextPath}/resources/css/common.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <script>
 	$(function() {
 		$("#f1").submit(
-						function() {
-							$(".error").css("display", "none");
-							$(".error2").css("display", "none");
+				var str = $("input[name='addr']").val() + ;
+				
+				alert(str);
+			function() {
+				$(".error").css("display", "none");
+				$(".error2").css("display", "none");
 
-							//빈 input태그가 존재하면 submit을 막도록 한다.
-							if (checkInputEmpty($("input[name]")) == false) {
-								return false;
-							}
+				//빈 input태그가 존재하면 submit을 막도록 한다.
+				if (checkInputEmpty($("input[name]")) == false) {
+					return false;
+				}
 
-							//id 입력 확인
-							var idReg = /^[a-z0-9]{6,15}$/i;
-							var id = $("input[name='memberid']").val();
-							if (idReg.test(id) == false) {
-								$("input[name='memberid']").next().css("display",
-										"inline");
-								return false;
-							}
+				//id 입력 확인
+				var idReg = /^[a-z0-9]{6,15}$/i;
+				var id = $("input[name='memberid']").val();
+				if (idReg.test(id) == false) {
+					$("input[name='memberid']").next().css("display",
+							"inline");
+					return false;
+				}
 
-							/* 	//name 확인
-								//===========================================
-									$("input[name='name']").focusin(function{
-								if(checkInputEmpty( $("input[name='name']") ) == false){
-									 alert("이름을 입력해 주세요.");
-									return false;
-								}
-									})
-									//============================================ */
-							var nameReg = /^[가-힣]{2,5}$/;
-							var name = $("input[name='name']").val();
-							if (nameReg.test(name) == false) {
-								$("input[name='name']").next().css("display",
-										"inline");
-								return false;
-							}
+				/* 	//name 확인
+					//===========================================
+						$("input[name='name']").focusin(function{
+					if(checkInputEmpty( $("input[name='name']") ) == false){
+						 alert("이름을 입력해 주세요.");
+						return false;
+					}
+						})
+						//============================================ */
+				var nameReg = /^[가-힣]{2,5}$/;
+				var name = $("input[name='name']").val();
+				if (nameReg.test(name) == false) {
+					$("input[name='name']").next().css("display",
+							"inline");
+					return false;
+				}
 
-							//password 확인
-							var passReg = /^[a-z0-9!@#$%^&]{8,20}$/;
-							var pass = $("input[name='password']").val();
-							if (passReg.test(pass) == false) {
-								$("input[name='password']").next().css(
-										"display", "inline");
-								return false;
-							}
+				//password 확인
+				var passReg = /^[a-z0-9!@#$%^&]{8,20}$/;
+				var pass = $("input[name='password']").val();
+				if (passReg.test(pass) == false) {
+					$("input[name='password']").next().css(
+							"display", "inline");
+					return false;
+				}
 
-							//password일치하지 않을때
-							if ($("input[name='password']").val() != $(
-									"input[name='confirmPassword']").val()) {
-								$("input[name='confirmPassword']").next()
-										.next().css("display", "inline");
-								return false;
-							}
-							
-							var telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-							var tel =$("input[name='tel']").val();
-							if (telReg.test(tel) == false) {
-								$("input[name='tel']").next().css("display",
-										"inline");
-								return false;
-							}
-							
-							var emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-							var email =$("input[name='email']").val();
-							if (emailReg.test(email) == false) {
-								$("input[name='email']").next().css("display",
-										"inline");
-								return false;
-							}
-							
+				//password일치하지 않을때
+				if ($("input[name='password']").val() != $(
+						"input[name='confirmPassword']").val()) {
+					$("input[name='confirmPassword']").next()
+							.next().css("display", "inline");
+					return false;
+				}
+				
+				var telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+				var tel =$("input[name='tel']").val();
+				if (telReg.test(tel) == false) {
+					$("input[name='tel']").next().css("display",
+							"inline");
+					return false;
+				}
+				
+				var emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+				var email =$("input[name='email']").val();
+				if (emailReg.test(email) == false) {
+					$("input[name='email']").next().css("display",
+							"inline");
+					return false;
+				}
+				
 
-						});
+			});
 	})
 
 	//---------------------------------------------------------	
@@ -181,8 +185,75 @@ span {
 	
 	
 	// --------------------------------------------------------
+	//========================================주소검색 script=========================
+	
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var roadAddr = data.roadAddress; // 도로명 주소 변수
+	            var extraRoadAddr = ''; // 참고 항목 변수
+	
+	            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                extraRoadAddr += data.bname;
+	            }
+	            // 건물명이 있고, 공동주택일 경우 추가한다.
+	            if(data.buildingName !== '' && data.apartment === 'Y'){
+	               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	            }
+	            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	            if(extraRoadAddr !== ''){
+	                extraRoadAddr = ' (' + extraRoadAddr + ')';
+	            }
+	
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('sample4_postcode').value = data.zonecode;
+	            document.getElementById("sample4_roadAddress").value = roadAddr;
+	            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+	            
+	            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+	            if(roadAddr !== ''){
+	                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+	                
+	              
+	                
+	            } else {
+	                document.getElementById("sample4_extraAddress").value = '';
+	            }
+	
+	            var guideTextBox = document.getElementById("guide");
+	            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+	            if(data.autoRoadAddress) {
+	                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+	                guideTextBox.style.display = 'block';
+	
+	            } else if(data.autoJibunAddress) {
+	                var expJibunAddr = data.autoJibunAddress;
+	                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+	                guideTextBox.style.display = 'block';
+	            } else {
+	                guideTextBox.innerHTML = '';
+	                guideTextBox.style.display = 'none';
+	            }
+	            
+	         
+	            
+	        }
+	    }).open();
+	}
+	
+	
 </script>
 </head>
+
+<!-- ------------===============body 시작 ==============------------- -->
 <body>
 	<div>
 		<form action="register" method="post" id="f1">
@@ -220,12 +291,31 @@ span {
 					value="${param.email }">
 					<span class="error">E-mail 형식이 맞지 않습니다</span>
 			</p>
-
+		
+		<!-- ===================== 주소팝업 가져오기 ========================= -->	
+			<p>
+					
+	
+	<span class="daum_addr">
+	                  	<input type="text" id="sample4_postcode" placeholder="우편번호">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="주소찾기"><br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr">
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="addr2">
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addr3">
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="addr4">
+						
+					</span>
+					
+			</p>
+			
 			
 			<p>
-				<input type="submit" value="가입">
+				<input type="submit" value="가입" id="btnsmt">
 			</p>
 		</form>
+		
+		<div id="outtest"></div>
 	</div>
 </body>
 </html>

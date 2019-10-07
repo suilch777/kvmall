@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.com.kv.domain.MemberVO;
-import kr.com.kv.persistence.MemberDao;
+import kr.com.kv.domain.CmemberVO;
+
+import kr.com.kv.persistence.CmemberDao;
+
 
 
 
@@ -14,10 +16,10 @@ import kr.com.kv.persistence.MemberDao;
 
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class CmemberServiceImpl implements CmemberService {
 	
 	@Autowired
-	MemberDao dao;
+	CmemberDao dao;
 	
 	@Override
 	public String getTime() {
@@ -27,34 +29,34 @@ public class MemberServiceImpl implements MemberService {
 	
 		
 	@Override
-	public MemberVO selectMemberByIdAndPw(String userid, String userpw) {
+	public CmemberVO selectMemberByIdAndPw(String userid, String userpw) {
 		// TODO Auto-generated method stub
 		return dao.selectMemberByIdAndPw(userid, userpw);
 	}
 
 	@Override
-	public void register(MemberVO vo) throws Exception {
+	public void register(CmemberVO vo) throws Exception {
 		dao.register(vo);
 		
 	}
 
 
 	@Override
-	public MemberVO readMember(String userid) {
+	public CmemberVO readMember(String userid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public List<MemberVO> selectAll() {
+	public List<CmemberVO> selectAll() {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}
 
 
 	@Override
-	public MemberVO read(String memberid) {
+	public CmemberVO read(String memberid) {
 		// TODO Auto-generated method stub
 		return dao.selectMember(memberid);
 	}
@@ -68,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void modify(MemberVO member) {
+	public void modify(CmemberVO member) {
 		dao.update(member);
 		
 	}

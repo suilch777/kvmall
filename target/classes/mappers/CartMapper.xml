@@ -6,15 +6,18 @@
 
 	<insert id="register">
 
-		INSERT INTO kvmall.cart
-		(cmid, pcode, pname, cnt)
-		VALUES(#{cmid}, #{pcode}, #{pname}, #{cnt});
+	INSERT INTO kvmall.cart
+	(cmid, smid, pcode, pname, cnt, priceamt, regdate)
+	VALUES(#{cmid}, #{cmid},#{pcode}, #{pname}, #{cnt}, #{priceamt},#{regdate});
 	</insert>
+	
 
 	<insert id="saleregister">
 		INSERT INTO kvmall.salelist
 		(pcode, smid,cmid, pname, pric, cnt)
 		VALUES(#{pcode}, #{smid},#{cmid}, #{pname}, #{pric},#{cnt});
+		
+		
 
 	</insert>
 

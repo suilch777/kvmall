@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.com.kv.domain.MemberVO;
-import kr.com.kv.service.MemberService;
+import kr.com.kv.domain.CmemberVO;
+
+import kr.com.kv.service.CmemberService;
 
 
 
@@ -24,7 +25,7 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	MemberService service;
+	CmemberService service;
 	
 	@RequestMapping(value="register", method=RequestMethod.GET)
 	public String registerGET() {
@@ -35,7 +36,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPOST(MemberVO member) throws Exception {
+	public String registerPOST(CmemberVO member) throws Exception {
 		logger.info("------------- registerPOST");	
 		logger.info(member.toString());
 		
@@ -52,7 +53,7 @@ public class MemberController {
 	public void listAll(Model model) throws Exception {
 		logger.info("------------ listAll");
 		
-		List<MemberVO> list = service.selectAll();
+		List<CmemberVO> list = service.selectAll();
 		model.addAttribute("list", list);
 		
 	}
@@ -60,7 +61,7 @@ public class MemberController {
 	@RequestMapping(value="read", method=RequestMethod.GET)
 	public void read(String memberid, Model model) throws Exception {
 		logger.info("-------------- read, bno="+memberid);
-		MemberVO member = service.read(memberid);
+		CmemberVO member = service.read(memberid);
 		model.addAttribute("member", member);
 	}
 	
@@ -73,12 +74,12 @@ public class MemberController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public void modifyGET(String memberid, Model model) throws Exception{
-		MemberVO member = service.read(memberid);
+		CmemberVO member = service.read(memberid);
 		model.addAttribute("memebr", member);
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modifyPOST(MemberVO member) throws Exception{
+	public String modifyPOST(CmemberVO member) throws Exception{
 		service.modify(member);		
 		return "redirect:/member/listAll";
 	}

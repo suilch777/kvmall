@@ -8,12 +8,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.com.kv.domain.CmemberVO;
 import kr.com.kv.domain.MemberVO;
 
 
 
 @Repository
-public class MemberDaoImpl implements MemberDao {
+public class CmemberDaoImpl implements CmemberDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -28,19 +29,19 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public MemberVO selectMember(String userid) {
+	public CmemberVO selectMember(String userid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".selectMember", userid);
 	}
 
 	@Override
-	public List<MemberVO> selectAll() {
+	public List<CmemberVO> selectAll() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectAll");
 	}
 
 	@Override
-	public void update(MemberVO vo) {
+	public void update(CmemberVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace+".update", vo);
 	}
@@ -48,7 +49,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 
 	@Override
-	public MemberVO selectMemberByIdAndPw(String userid, String userpw) {
+	public CmemberVO selectMemberByIdAndPw(String userid, String userpw) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
@@ -58,7 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void register(MemberVO vo) throws Exception {
+	public void register(CmemberVO vo) throws Exception {
 		sqlSession.insert(namespace+".register", vo);
 		
 	}

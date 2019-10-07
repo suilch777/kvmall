@@ -135,7 +135,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null }">
 				<!-- 로그아웃 상태 -->
-
+				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/login" id="login">판매하기</a>
 				<a id="tmenu" href="bord.jsp">고객센타</a>
 				<a id="tmenu" href="bord.jsp">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
