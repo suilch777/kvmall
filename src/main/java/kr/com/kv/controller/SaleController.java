@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,6 +60,18 @@ public class  SaleController {
 		int res = service.saleregister(crt);
 		
 		return res;
+		
+	}
+	
+	@RequestMapping(value="cartlist", method=RequestMethod.GET)
+	public void cartlist(Model model, CartVO cmid) {
+	
+		logger.info("------------ cartlist");
+		
+		List<CartVO> list  = service.cartlist(cmid);
+		model.addAttribute("list", list);
+		
+		logger.info("------------ cartlist"+list);
 		
 	}
 

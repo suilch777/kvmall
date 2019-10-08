@@ -1,5 +1,7 @@
 package kr.com.kv.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,13 @@ public class SaleServiceImpl implements SaleService {
 	public int saleregister(CartVO crt) {
 		// TODO Auto-generated method stub
 		return dao.saleregister(crt);
+	}
+
+
+	@Override
+	public List<CartVO> cartlist(CartVO crt) {
+		
+		return dao.cartlist(crt);
 	}
 
 

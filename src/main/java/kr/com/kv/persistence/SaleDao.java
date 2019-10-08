@@ -17,6 +17,8 @@ public interface SaleDao {
 	public void register(String memberid);
 
 	public int saleregister(CartVO crt);
+
+	public List<CartVO> cartlist(CartVO crt);
 	
 
 }

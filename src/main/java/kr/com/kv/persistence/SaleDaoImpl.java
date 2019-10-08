@@ -45,4 +45,10 @@ public class SaleDaoImpl implements SaleDao {
 		return sqlSession.insert(namespace + ".register",crt);
 	}
 
+	@Override
+	public List<CartVO> cartlist(CartVO crt) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".cartlist(crt)");
+	}
+
 }

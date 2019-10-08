@@ -1,5 +1,7 @@
 package kr.com.kv.service;
 
+import java.util.List;
+
 import kr.com.kv.domain.CartVO;
 
 public interface SaleService {
@@ -8,6 +10,6 @@ public interface SaleService {
 
 	public int saleregister(CartVO crt);
 
-	
+	public List<CartVO> cartlist(CartVO crt);
 
 }
