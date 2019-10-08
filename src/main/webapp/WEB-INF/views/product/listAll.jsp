@@ -27,8 +27,8 @@
 	position: fixed;
 	width: 75%;
 	text-align: center;
-	background: white;
-	opacity: 0.5;
+	/* background: white;
+	opacity: 0.5; */
 }
 
 #comlogo {
@@ -50,6 +50,8 @@ a#tmenu {
 
 #slide {
 	border: 1px solid #000;
+	width: 700px;
+	height: 400px;
 }
 
 #content1 {
@@ -63,6 +65,7 @@ a#tmenu {
 	display: inline-block;
 	font-size: 12px;
 	margin: 10px 0;
+	text-align: center;
 }
 
 /*=============== 헤더부분  끝지점 =======================*/
@@ -77,7 +80,7 @@ ul {
 }
 
 #body1 {
-	float: left;
+	text-align:center;
 	margin-top: 50px;
 }
 li{
@@ -85,7 +88,7 @@ overflow: hidden;
 }
 #pwrap {
 	display: inline-block;
-	width: 24%;
+	width: 350px;
 	height: 500px;
 	text-align: left;
 }
@@ -96,13 +99,13 @@ overflow: hidden;
 }
 
 #pimg {
-	width: 280px;
-	height: 280px;
+	width: 330px;
+	height: 330px;
 }
 
 #pimg:hover {
-	width: 290px;
-	height: 290px;
+	width: 340px;
+	height: 340px;
 }
 
 hr#hr2 {
@@ -132,18 +135,17 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null }">
 				<!-- 로그아웃 상태 -->
-
+				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/slogin" id="slogin">판매하기</a>
 				<a id="tmenu" href="bord.jsp">고객센타</a>
 				<a id="tmenu" href="bord.jsp">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/member/register">회원가입</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/auth/login"
-					id="login">로그인</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/auth/login" id="login">로그인</a>
 			</c:if>
 
 			<!-- 로그인 상태 -->
-			<c:if test="${Auther != null }">
+			<c:if test="${Auther != null}">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
 				<a id="tmenu" href="bord.jsp">장바구니</a>
@@ -164,7 +166,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 			<img id="slide"
 				src="${pageContext.request.contextPath}/resources/images/slide-1.jpg"
-				name="slide" width="600" height="500"> <br>
+				name="slide" > <br>
 		</div>
 		<script type="text/javascript">
 			var step=1;
@@ -179,6 +181,27 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				setTimeout("slideit()",2500);
 			}
 			slideit();
+			
+			</script>
+			<div id="content2">
+
+			<img id="slide"
+				src="${pageContext.request.contextPath}/resources/images/p1.jpg"
+				name="slide" > <br>
+		</div>
+		<script type="text/javascript">
+				var step=1;
+				function slideit2(){
+					if (!document.images)
+						return
+					document.images.slide.src=eval("image"+step+".src");
+					if(step<3)
+						step++;
+					else 
+						step=1;
+					setTimeout("slideit()",2500);
+				}
+				slideit2();
 			
 			</script>
 

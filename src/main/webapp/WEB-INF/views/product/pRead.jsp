@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +13,21 @@
 
 
 <style>
-
 * {
 	margin: 0 auto;
 }
+
 #bodyall {
-	width : 75%;
+	width: 75%;
 	position: relative;
-	
 }
 
-#top{
-position: fixed;
-width: 75%;
+#top {
+	position: fixed;
+	width: 75%;
 	text-align: center;
-	background: white;
-	opacity: 0.5;
+	/* background: white;
+	opacity: 0.5; */
 }
 
 #comlogo {
@@ -49,6 +49,8 @@ a#tmenu {
 
 #slide {
 	border: 1px solid #000;
+	width: 700px;
+	height: 400px;
 }
 
 #content1 {
@@ -61,6 +63,7 @@ a#tmenu {
 #content2 {
 	display: inline-block;
 	font-size: 12px;
+	text-align: center;
 	margin: 10px 0;
 }
 
@@ -75,35 +78,94 @@ img {
 }
 
 #pbuyform {
-
 	position: fixed;
-	
-	top: 50px;
+	top: 100px;
 	right: 10px;
 	width: 200px;
 	height: 700px;
-	font-size: 20px;
+	font-size: 14px;
 	border: 1 px solid #D8D8D8s;
-	background-color: white;
-	opacity: 0.5;
-	
-}
-#pbuyformin{
-display: none;
 }
 
-#buybtn{
-border-radius:10px;
-width: 200px;
-height: 50px;
-background: red;
+#pbfname {
+	font-size: 16px;
+	font-weight: bold;
 }
-#body1{
-	text-align: center;;
+
+#output {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#pbuyformin {
+	display: none;
+}
+
+#buybtn {
+	border-radius: 5%;
+	width: 200px;
+	height: 50px;
+	background: red;
+}
+
+#body1 {
+	text-align: center;
+}
+
+#totalprice{
+display: none;
 }
 </style>
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	 
+	//=================== 장바구니 담기  ==============================
+		$(function() {
+			$("#regcart").click(function() {
+				 var rmemberid = "${kvp.smemberid}";
+				var pcode = "${kvp.pcode}";
+				var pname = "${kvp.pname}";
+				var cnt = $("#count").val(); 
+				var tprice= $("#totalprice").html();
+				var price = Number(tprice);
+				
+				/* var list ={
+					rmemberid :"${kvp.smemberid}",
+				 	pcode : "${kvp.pcode}",
+					pname :"${kvp.pname}",
+					cnt : $("#count").val()
+				}; */
+				
+				$.ajax({					
+					type : "post",
+					data : {
+					 	 "cmid" : rmemberid,
+						"smid":rmemberid,
+						"pcode" : pcode,
+						"pname" : pname,
+						"cnt" : cnt,
+						"priceamt":price  
+					},
+					url : "${pageContext.request.contextPath}/sale/register",
+					dataType : "Json",
+					success : function(data) {
+						alert("장바구니에 담았습니다!");
+					}
+
+				});
+			});
+		});
+
+		
+
+	</script>
+
+
+
+
 
 <script type="text/javascript">
 var image1=new Image();
@@ -158,14 +220,14 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 		</div>
 	</div>
 
-<!--  	<hr id="hr1"> -->
+	<!--  	<hr id="hr1"> -->
 
 
 	<div id="content1">
 
 		<img id="slide"
 			src="${pageContext.request.contextPath}/resources/images/slide-1.jpg"
-			name="slide" width="600" height="500"> <br>
+			name="slide"> <br>
 	</div>
 	<script type="text/javascript">
 			var step=1;
@@ -183,6 +245,27 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			
 			</script>
 
+	<div id="content2">
+
+		<img id="slide"
+			src="${pageContext.request.contextPath}/resources/images/p2.jpg"
+			name="slide"> <br>
+	</div>
+	<script type="text/javascript">
+				var step=1;
+				function slideit2(){
+					if (!document.images)
+						return
+					document.images.slide.src=eval("image"+step+".src");
+					if(step<3)
+						step++;
+					else 
+						step=1;
+					setTimeout("slideit()",2500);
+				}
+				slideit2();
+			</script>
+
 
 	<!--  <hr id="hr2"> -->
 
@@ -194,62 +277,84 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 	<div id="pbuyform">
-		<form action="">
-		<label></label><input type="text" name="pcode" value="${kvp.pcode}" id="pbuyformin"> <br> 
-		<span style="text-decoration: underline;">${kvp.pname}<input type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span> <br>
-		<br> ${kvp.pcontent}<br><br><br><br>
-		<label>가격</label><span
-			style="text-decoration: line-through;"> &#92;${kvp.price} </span>
-			<input type="number" name="price" value="${kvp.price}"  id="pbuyformin"><br> <br> 
-		<label>할인가</label>
-			&#92; ${kvp.dcprice} <input type="number" name="price" value="${kvp.dcprice}"  id="pbuyformin"><br> <br> 
-			<label>색상</label>&nbsp; <select name= "color">
-			<option value="흰색">흰색</option>
-			<option value= "빨강">빨강</option>
-			<option value="파랑">파랑</option>
-			<option value="검정">검정</option>
+		<form action="/cart/register" method="post">
+			<input type="hidden" name="smemberid" value="${kvp.smemberid}">
+			<label></label><input type="text" name="pcode" value="${kvp.pcode}"
+				id="pbuyformin"> <br> <span id="pbfname"
+				style="text-decoration: underline;">${kvp.pname}<input
+				type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span>
+			<br> <br> <br> ${kvp.pcontent}<br> <br> <br>
+			<label>가격</label><span style="text-decoration: line-through;">
+				&#92;${kvp.price} </span> <input type="number" name="price"
+				value="${kvp.price}" id="pbuyformin"><br> <br> <label>할인가</label>
+			&#92; ${kvp.dcprice} <input type="number" name="dcprice"
+				value="${kvp.dcprice}" id="pbuyformin"><br> <br> <br>
+			<label>색상</label>&nbsp; <select name="color">
+				<option value="흰색">흰색</option>
+				<option value="빨강">빨강</option>
+				<option value="파랑">파랑</option>
+				<option value="검정">검정</option>
+
+			</select> <br> <br> <label>사이즈</label> <select name="size">
+				<option value="85">85</option>
+				<option value="90">90</option>
+				<option value="95">95</option>
+				<option value="100">100</option>
+			</select> <br> <br> <label>수량</label><select id="count">
+				<c:forEach var="i" begin="1" end="10">
+					<option><c:out value="${i}" /></option>
+				</c:forEach>
+			</select> <br> <br> <label>총&nbsp;합계금액&nbsp;(수량)</label> <br> <br>
+			<div id="output"></div>
 			
-			</select>
-			<br><br> 
-		<label>사이즈</label> <select name= "size">
-			<option value="85">85</option>
-			<option value= "90">90</option>
-			<option value="95">95</option>
-			<option value="100">100</option>
-			
-			</select>
-		<br><br> 
-		<label>수량</label><select id="count">
-		     
-					<c:forEach var="i" begin="1" end="10">
-						<option>${i }</option>
-					</c:forEach>
-				</select>
-		
-		<br>
-		<script type="text/javascript">
-		
-		var count = $("#count").val();
-		var price= ${kvp.dcprice};
-		
-		alert(count);
-		alert(price);
-		var sum = count*price;
-		alert(sum);
-		
-		</script>
-	
-		
-		<label>총합계금액(수량)</label> 
-		
-		
-		<input type="button" name="buybtn" value="바로구매" id="buybtn"><br><br> 
-		<input type="button" name="cartbtn" value="장바구니담기">
-		<input type="button" name="wishbtn" value="찜하기" >
-				</form>
-	
-			 
+			<div id="totalprice"></div>
+
+<!-- ==================body--footer ============================ -->
+
+
+			<script type="text/javascript">
+				$("#count").change(onSelectChange); //select  id를 이용하여 셀렉트 변경시마다 onSelectChange함수 실행
+				$("#count").change();
+				function onSelectChange() {
+					var selected = $("#count option:selected");
+					var output = "";
+					if (selected.val() != 0) {
+						output = selected.text();
+					}
+					var num = output;
+					var price = ${kvp.dcprice};
+					var sum = num * price;
+
+					function numberWithCommas(x) {
+						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+								",");
+					}
+
+					$("#output").html(
+							"&#8361;" + numberWithCommas(sum) + "원" + "&nbsp;("
+									+ num + ")"); //div에 output 변수에 담은 text HTML로 출력하기
+									$("#totalprice").html(sum);
+				}
+				
+			</script>
+
+
+			<br> <br>
+		</form>
+		<input type="submit" name="buybtn" value="바로구매" id="buybtn"><br>
+		<br> <input type="button" name="cartbtn" value="장바구니담기"
+			id="regcart"> <input type="button" name="wishbtn" value="찜하기">
+
+
+
+
+
 	</div>
+
+
+
 	
+
+
 </body>
 </html>

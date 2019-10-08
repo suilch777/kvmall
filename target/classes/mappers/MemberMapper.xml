@@ -3,37 +3,60 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.com.kv.mappers.MemberMapper">
-	<insert id="register" >
-		insert into member  (memberid, name, password, tel, email)
-		values(#{memberid},#{name},#{password},#{tel}, #{email})
+
+	<insert id="register">
+		INSERT INTO kvmall.cmember
+		(cmid, name, password, tel,
+		email, regdate, addr)
+		VALUES(#{cmid},#{name},#{password},#{tel},
+		#{email}, #{regdate},
+		#{addr});
 	</insert>
-	
+
+	<insert id="sregister">
+
+		INSERT INTO kvmall.smember
+		(smid, name, password, tel, accno, email, regdate, addr1, addr2)
+		VALUES(#{smid},#{name},#{password},#{tel},#{accno}, #{email},
+		CURRENT_TIMESTAMP, #{addr1}, #{addr2});
+
+	</insert>
+
 	<!-- 아이디 확인 -->
-<select id="idCheck" parameterType="String" resultType="Integer">
- select count(*) from member where memberid = #{memberid}
-</select>
-	
-	
-	<select id="selectAll" resultType="MemberVO">
-		select * from member
-		</select>
-	
-	<select id="read" resultType="MemberVO">
-		select * from member where memberid = #{memberid}
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		select
+		count(*) from cmember where cmid = #{cmid}
+	</select>
+
+
+	<select id="selectAll" resultType="CmemberVO">
+		select * from cmember
+	</select>
+
+	<select id="read" resultType="CmemberVO">
+		select * from member where memberid
+		= #{cmid}
 	</select>
 	<update id="update">
-		update member set password=#{password} 
-		where memberid=#{memberid}
+		update cmember set password=#{password}
+		where
+		cmid=#{cmid}
 	</update>
-	
+
 	<delete id="remove">
 		delete from member where memberid=#{memberid}
 	</delete>
-	
-	<select id="selectMemberByIdAndPw" resultType="MemberVO">
-		select * from member where memberid=#{userid} and password=#{userpw}
+
+	<select id="selectsMemberByIdAndPw" resultType="smemberVO">
+		select * from
+		smember where smid=#{userid} and password=#{userpw}
 	</select>
 	
+		<select id="selectcMemberByIdAndPw" resultType="cmemberVO">
+		select * from
+		cmember where cmid=#{userid} and password=#{userpw}
+	</select>
+
 </mapper>
 
 

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.com.kv.domain.MemberVO;
-import kr.com.kv.service.MemberService;
+import kr.com.kv.domain.CmemberVO;
+import kr.com.kv.domain.SmemberVO;
+import kr.com.kv.service.CmemberService;
+import kr.com.kv.service.SmemberService;
 
 
 
@@ -24,7 +26,9 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	MemberService service;
+	CmemberService service;
+	@Autowired
+	SmemberService sservice;
 	
 	@RequestMapping(value="register", method=RequestMethod.GET)
 	public String registerGET() {
@@ -35,16 +39,38 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPOST(MemberVO member) throws Exception {
+	public String sregisterPOST(CmemberVO cm) throws Exception {
 		logger.info("------------- registerPOST");	
-		logger.info(member.toString());
+		logger.info(cm.toString());
 		
-		service.register(member);
+		service.register(cm);
 		//jsp가 아니라 controller로 감
 		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
 		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
 		
-		return "redirect:/member/memberList"; 
+		return "redirect:/product/listAll"; 
+	}
+	// Smember controller ====================
+	
+	@RequestMapping(value="sregister", method=RequestMethod.GET)
+	public String sregisterGET() {
+		logger.info("------------- sregisterGET");	
+		
+		return "member/sjoinForm";
+		
+	}
+	
+	@RequestMapping(value="sregister", method=RequestMethod.POST)
+	public String registerPOST(SmemberVO sm) throws Exception {
+		logger.info("------------- sregisterPOST");	
+		logger.info(sm.toString());
+		
+		sservice.sregister(sm);
+		//jsp가 아니라 controller로 감
+		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
+		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
+		
+		return "redirect:/product/listAll"; 
 	}
 	
 	//board/listAll
@@ -52,7 +78,7 @@ public class MemberController {
 	public void listAll(Model model) throws Exception {
 		logger.info("------------ listAll");
 		
-		List<MemberVO> list = service.selectAll();
+		List<CmemberVO> list = service.selectAll();
 		model.addAttribute("list", list);
 		
 	}
@@ -60,7 +86,7 @@ public class MemberController {
 	@RequestMapping(value="read", method=RequestMethod.GET)
 	public void read(String memberid, Model model) throws Exception {
 		logger.info("-------------- read, bno="+memberid);
-		MemberVO member = service.read(memberid);
+		CmemberVO member = service.read(memberid);
 		model.addAttribute("member", member);
 	}
 	
@@ -73,12 +99,12 @@ public class MemberController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public void modifyGET(String memberid, Model model) throws Exception{
-		MemberVO member = service.read(memberid);
+		CmemberVO member = service.read(memberid);
 		model.addAttribute("memebr", member);
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modifyPOST(MemberVO member) throws Exception{
+	public String modifyPOST(CmemberVO member) throws Exception{
 		service.modify(member);		
 		return "redirect:/member/listAll";
 	}

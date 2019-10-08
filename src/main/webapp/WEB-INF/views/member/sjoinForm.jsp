@@ -33,6 +33,13 @@ span {
 	margin-left: 120px;
 	font-size: 10px;
 }
+
+#sample4_postcode{
+display: none;
+}
+#sample4_extraAddress{
+display: none;
+}
 </style>
 
 <link rel="stylesheet"
@@ -44,9 +51,8 @@ span {
 <script>
 	$(function() {
 		$("#f1").submit(
-				/* var str = $("input[name='addr']").val() + ;
-				
-				alert(str); */
+				//var str = $("input[name='addr3']").val();
+				//alert(str); 
 			function() {
 				$(".error").css("display", "none");
 				$(".error2").css("display", "none");
@@ -58,9 +64,9 @@ span {
 
 				//id 입력 확인
 				var idReg = /^[a-z0-9]{6,15}$/i;
-				var id = $("input[name='cmid']").val();
+				var id = $("input[name='smid']").val();
 				if (idReg.test(id) == false) {
-					$("input[name='cmid']").next().css("display",
+					$("input[name='smid']").next().css("display",
 							"inline");
 					return false;
 				}
@@ -126,12 +132,12 @@ span {
 		//idck 버튼을 클릭했을 때 
 		$("#btn1").click(function() {
 			//=====================
-			if (checkInputEmpty($("input[name='cmid']")) == false) {
+			if (checkInputEmpty($("input[name='smid']")) == false) {
 				alert("ID를 입력해 주세요.");
 				return false;
 			}
 			var idReg = /^[a-z0-9]{6,15}$/i;
-			var id = $("input[name='cmid']").val();
+			var id = $("input[name='smid']").val();
 			if (idReg.test(id) == false) {
 				$("span[id='idchk']").css("display", "inline");
 				return false;
@@ -139,13 +145,13 @@ span {
 			//===================
 
 			//userid 를 param.
-			var cmid = $("input[name='cmid']").val();
+			var smid = $("input[name='smid']").val();
 
 			$.ajax({
 				async : true,
 				type : 'POST',
 				data : {
-					"userid" : cmid
+					"userid" : smid
 				},
 				url : "idCheck",
 				dataType : "json",
@@ -184,7 +190,7 @@ span {
 	});
 	
 	
-	// --------------------------------------------------------
+	
 	//========================================주소검색 script=========================
 	
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -215,7 +221,7 @@ span {
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample4_postcode').value = data.zonecode;
 	            document.getElementById("sample4_roadAddress").value = roadAddr;
-	            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+	          //  document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 	            
 	            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 	            if(roadAddr !== ''){
@@ -243,7 +249,9 @@ span {
 	                guideTextBox.style.display = 'none';
 	            }
 	            
+	         var addrall = data.zonecode+roadAddr+$("input[name='addr2']").val();
 	         
+	         alert(addrall);
 	            
 	        }
 	    }).open();
@@ -256,9 +264,9 @@ span {
 <!-- ------------===============body 시작 ==============------------- -->
 <body>
 	<div>
-		<form action="register" method="post" id="f1">
+		<form action="sregister" method="post" id="f1">
 			<p>
-				<label>아이디</label> <input type="text" name="cmid" value="${param.id }">
+				<label>아이디</label> <input type="text" name="smid" value="${param.id }">
 				<button type ="button" id="btn1">중복확인</button>
 				<br> <span class="error" id="idchk">ID(영어,숫자 6~15)를
 					입력하세요</span>
@@ -291,31 +299,50 @@ span {
 					value="${param.email }">
 					<span class="error">E-mail 형식이 맞지 않습니다</span>
 			</p>
+			
+			<p>
+				<label>계좌번호</label> <input type="text" name="accno"
+					value="${param.accno }">
+					<span class="error">계좌번호를 입력하세요</span>
+			</p>
 		
 		<!-- ===================== 주소팝업 가져오기 ========================= -->	
-			<p>
-					
 	
-	<span class="daum_addr">
-	                  	<input type="text" id="sample4_postcode" placeholder="우편번호">
+	
+		<p>
+				<label>주소1</label> <input type="text" name="addr1"
+					value="${param.addr1 }">
+					<span class="error">주소를 입력 하세요</span>
+			</p>
+	
+	<p>
+				<label>주소2</label> <input type="text" name="addr2"
+					value="${param.addr1 }">
+					<span class="error">상세주소를 입력 하세요</span>
+			</p>
+		<!-- 
+			<p>		
+	
+	                 <span class="daum_addr">
+	                    <input type="text" id="sample4_postcode" placeholder="우편번호">
 						<input type="button" onclick="sample4_execDaumPostcode()" value="주소찾기"><br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="addr2">
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr1">
+				 	<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="addr2">
 						<span id="guide" style="color:#999;display:none"></span>
-						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addr3">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="addr4">
+						 
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addr2">
+						 <input type="text" id="sample4_extraAddress" placeholder="참고항목" name="addr4"> 
 						
 					</span>
 					
-			</p>
+			</p> 
 			
-			
+			 -->
 			<p>
 				<input type="submit" value="가입" id="btnsmt">
 			</p>
 		</form>
 		
-		<div id="outtest"></div>
 	</div>
 </body>
 </html>

@@ -4,26 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.com.kv.mappers.KvproductMapper">
 
-	<insert id="register" >
-				
+	<insert id="register">
+
 		INSERT INTO product
-		(pcode, mid, pname, pcontent, price, dcprice, color, size, pic,stock)
-		VALUES(#{pcode},#{mid}, #{pname}, #{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic}, #{stock});
+		(pcode, smemberid, pname, pcontent, price, dcprice, color,
+		size, pic,stock)
+		VALUES(#{pcode},#{smemberid}, #{pname},
+		#{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic},
+		#{stock});
 	</insert>
-	
+
 	<select id="listAll" resultType="KvproductVO">
 		select * from product
 	</select>
-	
+
 	<select id="read" resultType="KvproductVO">
-	select * from product
-	where pcode =#{pcode}
-	
+		select * from product
+		where pcode =#{pcode}
 	</select>
-	
-	
-	
-</mapper>
+
+	</mapper>
 
 
 

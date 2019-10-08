@@ -18,8 +18,5 @@ public interface kvproductDao {
 	public List<KvproductVO> listAll()throws Exception;
 
 	public KvproductVO read(String pcode)throws Exception;
-	
-	
-
-	
+		
 }
