@@ -5,12 +5,12 @@ import java.util.List;
 import kr.com.kv.domain.CartVO;
 
 
-public interface CartDao {
+public interface SaleDao {
 	
 	
-	public List<CartDao> listAll()throws Exception;
+	public List<SaleDao> listAll()throws Exception;
 
-	public CartDao read(String memberid)throws Exception;
+	public SaleDao read(String memberid)throws Exception;
 
 	public int register(CartVO crt)throws Exception;
 

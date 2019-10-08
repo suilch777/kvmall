@@ -30,7 +30,7 @@
 	
 	<c:forEach var="member" items="${list }">
 		<tr>
-			<td>${member.memberid }</td>
+			<td>${member.cmid }</td>
 			<td>${member.password }</td>
 			<td>${member.name }</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd  HH:mm:ss" value="${member.regdate }"/> </td>
@@ -38,6 +38,6 @@
 	</c:forEach>
 	</table>
 	<br>
-	<a href="index.jsp">홈 화면</a>
+	<a href="product/lastAll.jsp"><span style="color: red;">Kvmall</span></a>
 </body>
 </html>

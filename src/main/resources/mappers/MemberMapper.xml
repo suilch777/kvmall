@@ -6,14 +6,26 @@
 
 	<insert id="register">
 		INSERT INTO kvmall.cmember
-		(cmid, name, password, tel, email, regdate, addr)
-		VALUES(#{cmid},#{name},#{password},#{tel}, #{email}, #{regdate},
+		(cmid, name, password, tel,
+		email, regdate, addr)
+		VALUES(#{cmid},#{name},#{password},#{tel},
+		#{email}, #{regdate},
 		#{addr});
 	</insert>
-	
+
+	<insert id="sregister">
+
+		INSERT INTO kvmall.smember
+		(smid, name, password, tel, accno, email, regdate, addr1, addr2)
+		VALUES(#{smid},#{name},#{password},#{tel},#{accno}, #{email},
+		CURRENT_TIMESTAMP, #{addr1}, #{addr2});
+
+	</insert>
+
 	<!-- 아이디 확인 -->
 	<select id="idCheck" parameterType="String" resultType="Integer">
-		select count(*) from cmember where cmid = #{cmid}
+		select
+		count(*) from cmember where cmid = #{cmid}
 	</select>
 
 
@@ -27,14 +39,20 @@
 	</select>
 	<update id="update">
 		update cmember set password=#{password}
-		where cmid=#{cmid}
+		where
+		cmid=#{cmid}
 	</update>
 
 	<delete id="remove">
 		delete from member where memberid=#{memberid}
 	</delete>
 
-	<select id="selectMemberByIdAndPw" resultType="CmemberVO">
+	<select id="selectsMemberByIdAndPw" resultType="smemberVO">
+		select * from
+		smember where smid=#{userid} and password=#{userpw}
+	</select>
+	
+		<select id="selectcMemberByIdAndPw" resultType="cmemberVO">
 		select * from
 		cmember where cmid=#{userid} and password=#{userpw}
 	</select>

@@ -9,20 +9,20 @@ import org.springframework.stereotype.Repository;
 import kr.com.kv.domain.CartVO;
 
 @Repository
-public class CartDaoImpl implements CartDao {
-	private static final String namespace = "kr.com.kv.mappers.CartMapper";
+public class SaleDaoImpl implements SaleDao {
+	private static final String namespace = "kr.com.kv.mappers.SaleCartMapper";
 	
 	@Autowired
 	SqlSession sqlSession;
 
 	@Override
-	public List<CartDao> listAll() throws Exception {
+	public List<SaleDao> listAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CartDao read(String memberid) throws Exception {
+	public SaleDao read(String memberid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

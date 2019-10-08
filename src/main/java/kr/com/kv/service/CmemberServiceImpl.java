@@ -29,9 +29,9 @@ public class CmemberServiceImpl implements CmemberService {
 	
 		
 	@Override
-	public CmemberVO selectMemberByIdAndPw(String userid, String userpw) {
+	public CmemberVO selectcMemberByIdAndPw(String userid, String userpw) {
 		// TODO Auto-generated method stub
-		return dao.selectMemberByIdAndPw(userid, userpw);
+		return dao.selectcMemberByIdAndPw(userid, userpw);
 	}
 
 	@Override

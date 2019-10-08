@@ -80,7 +80,7 @@ ul {
 }
 
 #body1 {
-	float: left;
+	text-align:center;
 	margin-top: 50px;
 }
 li{
@@ -88,7 +88,7 @@ overflow: hidden;
 }
 #pwrap {
 	display: inline-block;
-	width: 300px;
+	width: 350px;
 	height: 500px;
 	text-align: left;
 }
@@ -99,13 +99,13 @@ overflow: hidden;
 }
 
 #pimg {
-	width: 280px;
-	height: 280px;
+	width: 330px;
+	height: 330px;
 }
 
 #pimg:hover {
-	width: 290px;
-	height: 290px;
+	width: 340px;
+	height: 340px;
 }
 
 hr#hr2 {
@@ -135,18 +135,17 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null }">
 				<!-- 로그아웃 상태 -->
-				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/login" id="login">판매하기</a>
+				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/slogin" id="slogin">판매하기</a>
 				<a id="tmenu" href="bord.jsp">고객센타</a>
 				<a id="tmenu" href="bord.jsp">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/member/register">회원가입</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/auth/login"
-					id="login">로그인</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/auth/login" id="login">로그인</a>
 			</c:if>
 
 			<!-- 로그인 상태 -->
-			<c:if test="${Auther != null }">
+			<c:if test="${Auther != null}">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
 				<a id="tmenu" href="bord.jsp">장바구니</a>

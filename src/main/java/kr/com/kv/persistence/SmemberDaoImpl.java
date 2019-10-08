@@ -7,14 +7,12 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import kr.com.kv.domain.CmemberVO;
-import kr.com.kv.domain.MemberVO;
+import kr.com.kv.domain.SmemberVO;
 
 
 
 @Repository
-public class CmemberDaoImpl implements CmemberDao {
+public class SmemberDaoImpl implements SmemberDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -29,19 +27,19 @@ public class CmemberDaoImpl implements CmemberDao {
 	}
 	
 	@Override
-	public CmemberVO selectMember(String userid) {
+	public SmemberVO selectMember(String userid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".selectMember", userid);
 	}
 
 	@Override
-	public List<CmemberVO> selectAll() {
+	public List<SmemberVO> selectAll() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectAll");
 	}
 
 	@Override
-	public void update(CmemberVO vo) {
+	public void update(SmemberVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace+".update", vo);
 	}
@@ -49,31 +47,31 @@ public class CmemberDaoImpl implements CmemberDao {
 	
 
 	@Override
-	public CmemberVO selectcMemberByIdAndPw(String userid, String userpw) {
+	public SmemberVO selectsMemberByIdAndPw(String userid, String userpw) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
 		map.put("userpw", userpw);
 		
-		return sqlSession.selectOne(namespace+".selectcMemberByIdAndPw",map );
+		return sqlSession.selectOne(namespace+".selectsMemberByIdAndPw",map );
 	}
 
 	@Override
-	public void register(CmemberVO vo) throws Exception {
-		sqlSession.insert(namespace+".register", vo);
+	public void sregister(SmemberVO vo) throws Exception {
+		sqlSession.insert(namespace+".sregister", vo);
 		
 	}
 
 	@Override
-	public void remove(String memberid) {
-		sqlSession.delete(namespace+".remove", memberid);
+	public void remove(String smid) {
+		sqlSession.delete(namespace+".remove", smid);
 		
 	}
 
 	@Override
-	public int idCheck(String memberid) {
-		sqlSession.selectOne(namespace+".idCheck", memberid);
-		return sqlSession.selectOne(namespace+".idCheck", memberid);
+	public int idCheck(String smid) {
+		sqlSession.selectOne(namespace+".idCheck", smid);
+		return sqlSession.selectOne(smid);
 		
 	}
 

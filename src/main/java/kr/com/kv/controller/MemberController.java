@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.com.kv.domain.CmemberVO;
-
+import kr.com.kv.domain.SmemberVO;
 import kr.com.kv.service.CmemberService;
+import kr.com.kv.service.SmemberService;
 
 
 
@@ -26,6 +27,8 @@ public class MemberController {
 	
 	@Autowired
 	CmemberService service;
+	@Autowired
+	SmemberService sservice;
 	
 	@RequestMapping(value="register", method=RequestMethod.GET)
 	public String registerGET() {
@@ -36,16 +39,38 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPOST(CmemberVO member) throws Exception {
+	public String sregisterPOST(CmemberVO cm) throws Exception {
 		logger.info("------------- registerPOST");	
-		logger.info(member.toString());
+		logger.info(cm.toString());
 		
-		service.register(member);
+		service.register(cm);
 		//jsp가 아니라 controller로 감
 		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
 		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
 		
-		return "redirect:/member/memberList"; 
+		return "redirect:/product/listAll"; 
+	}
+	// Smember controller ====================
+	
+	@RequestMapping(value="sregister", method=RequestMethod.GET)
+	public String sregisterGET() {
+		logger.info("------------- sregisterGET");	
+		
+		return "member/sjoinForm";
+		
+	}
+	
+	@RequestMapping(value="sregister", method=RequestMethod.POST)
+	public String registerPOST(SmemberVO sm) throws Exception {
+		logger.info("------------- sregisterPOST");	
+		logger.info(sm.toString());
+		
+		sservice.sregister(sm);
+		//jsp가 아니라 controller로 감
+		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
+		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
+		
+		return "redirect:/product/listAll"; 
 	}
 	
 	//board/listAll

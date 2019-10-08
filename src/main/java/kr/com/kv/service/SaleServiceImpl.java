@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.com.kv.domain.CartVO;
-import kr.com.kv.persistence.CartDao;
+import kr.com.kv.persistence.SaleDao;
 
 @Service
-public class CartServiceImpl implements CartService {
+public class SaleServiceImpl implements SaleService {
 
 	@Autowired
-	CartDao dao;
+	SaleDao dao;
 
 	
 	@Override

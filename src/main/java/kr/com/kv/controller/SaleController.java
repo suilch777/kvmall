@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.com.kv.domain.CartVO;
 import kr.com.kv.domain.KvproductVO;
-import kr.com.kv.service.CartService;
+import kr.com.kv.service.SaleService;
 
 @Controller
-@RequestMapping("/cart/*")
-public class  CartController {
-	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+@RequestMapping("/sale/*")
+public class  SaleController {
+	private static final Logger logger = LoggerFactory.getLogger(SaleController.class);
 
 	@Autowired
-	CartService service;
+	SaleService service;
 
 	
 	@RequestMapping(value="register", method= RequestMethod.POST)

@@ -15,7 +15,7 @@ public interface CmemberDao {
 	public CmemberVO selectMember(String userid);
 	public List<CmemberVO> selectAll();
 	public void update(CmemberVO vo);	
-	public CmemberVO selectMemberByIdAndPw(String userid, String userpw);
+	public CmemberVO selectcMemberByIdAndPw(String userid, String userpw);
 	public void register(CmemberVO vo)throws Exception;
 	public void remove(String memberid);
 	public int idCheck(String memberid);

@@ -12,7 +12,6 @@ margin-top: 200px;
 }
 
 </style>
-<!-- 
  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -34,7 +33,6 @@ margin-top: 200px;
     <![endif]-->
       <!-- jQuery 2.1.4 -->
     <script src="${pageContext.request.contextPath }/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-     
 </head>
 <body class="login-page">
 	<div class="login-box">
@@ -43,7 +41,7 @@ margin-top: 200px;
 		</div>
 		<div class="login-box-body">
 			<p class="login-box-msg">Sign in to start your session</p>
-			<form action="loginPost" method="post">
+			<form action="sloginPost" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" name="userid" class="form-control">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>

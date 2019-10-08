@@ -149,7 +149,7 @@ display: none;
 						"cnt" : cnt,
 						"priceamt":price  
 					},
-					url : "${pageContext.request.contextPath}/cart/register",
+					url : "${pageContext.request.contextPath}/sale/register",
 					dataType : "Json",
 					success : function(data) {
 						alert("장바구니에 담았습니다!");
@@ -353,7 +353,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 
-	${kvp.smemberid}
+	
 
 
 </body>
