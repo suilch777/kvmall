@@ -77,7 +77,7 @@ public class KvproductController<HttpHttpServletRequest> {
 		//리다이렉트 : 브라우저에 돌아갈때 /board/listAll주소로 바로 이동하라고 처리하는 것임
 		//          브라우저가 화면을 그리기 전에 바로 http://localhost:8080/ex01/board/ListAll로 이동하게 됨
 		
-		return "redirect:listAll";
+		return "redirect:pRead";
 		
 	}
 	

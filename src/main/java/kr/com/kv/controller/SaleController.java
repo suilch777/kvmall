@@ -1,7 +1,5 @@
 package kr.com.kv.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,9 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import kr.com.kv.domain.CartVO;
-import kr.com.kv.domain.KvproductVO;
+import kr.com.kv.domain.CmemberVO;
 import kr.com.kv.service.SaleService;
 
 @Controller
@@ -38,11 +35,20 @@ public class  SaleController {
 				
 		logger.info("------------- registerPOST");	
 		logger.info("------------- registerPOST crt="+crt);
-				
-		int result = service.register(crt);
 		
-		return result;
+		/*CartVO dbcrt = service.selectcartByIdAndPcode(crt.getCmid(), crt.getPcode());
 		
+			logger.info("-------- registerPOST, dbcrt= "+dbcrt);
+		
+		if(dbcrt == null) {
+					
+		 return service.register(crt);
+		}else {
+			logger.info("registerPOST ...... cart register fail, duplication");
+			return 1;
+		}
+		*/
+		return service.register(crt);
 	}
 	
 	@RequestMapping(value="saleregister", method= RequestMethod.POST)
@@ -64,14 +70,15 @@ public class  SaleController {
 	}
 	
 	@RequestMapping(value="cartlist", method=RequestMethod.GET)
-	public void cartlist(Model model, CartVO cmid) {
+	public void cartlist(Model model, String cmid) throws Exception {
 	
 		logger.info("------------ cartlist");
 		
-		List<CartVO> list  = service.cartlist(cmid);
-		model.addAttribute("list", list);
+		CartVO vo  = service.cartlist(cmid);
+		model.addAttribute("crt", vo);
 		
-		logger.info("------------ cartlist"+list);
+		logger.info("------------ cartlist"+vo);
+		
 		
 	}
 

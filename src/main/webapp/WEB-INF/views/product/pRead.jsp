@@ -125,15 +125,15 @@ display: none;
 	//=================== 장바구니 담기  ==============================
 		$(function() {
 			$("#regcart").click(function() {
-				 var rmemberid = "${kvp.smemberid}";
+				  var smid = "${kvp.smid}";
 				var pcode = "${kvp.pcode}";
 				var pname = "${kvp.pname}";
 				var cnt = $("#count").val(); 
 				var tprice= $("#totalprice").html();
 				var price = Number(tprice);
-				
+				var cmid ="${Auther.userid}"
 				/* var list ={
-					rmemberid :"${kvp.smemberid}",
+					smid :"${kvp.smid}",
 				 	pcode : "${kvp.pcode}",
 					pname :"${kvp.pname}",
 					cnt : $("#count").val()
@@ -142,17 +142,22 @@ display: none;
 				$.ajax({					
 					type : "post",
 					data : {
-					 	 "cmid" : rmemberid,
-						"smid":rmemberid,
+					 	 "cmid" : cmid,
+						"smid":smid,
 						"pcode" : pcode,
 						"pname" : pname,
 						"cnt" : cnt,
-						"priceamt":price  
+						"priceamt":price
+						
 					},
 					url : "${pageContext.request.contextPath}/sale/register",
 					dataType : "Json",
 					success : function(data) {
+						if(data!=0){
 						alert("장바구니에 담았습니다!");
+						}else{
+							alert("이미 장바구니에 있습니다");
+						}
 					}
 
 				});
@@ -248,7 +253,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 	<div id="content2">
 
 		<img id="slide"
-			src="${pageContext.request.contextPath}/resources/images/p2.jpg"
+			src="${pageContext.request.contextPath}/resources/images/banner2.jpg"
 			name="slide"> <br>
 	</div>
 	<script type="text/javascript">
@@ -278,7 +283,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 	<div id="pbuyform">
 		<form action="/cart/register" method="post">
-			<input type="hidden" name="smemberid" value="${kvp.smemberid}">
+			<input type="hidden" name="smid" value="${kvp.smid}">
 			<label></label><input type="text" name="pcode" value="${kvp.pcode}"
 				id="pbuyformin"> <br> <span id="pbfname"
 				style="text-decoration: underline;">${kvp.pname}<input
@@ -345,16 +350,9 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 		<br> <input type="button" name="cartbtn" value="장바구니담기"
 			id="regcart"> <input type="button" name="wishbtn" value="찜하기">
 
-
-
-
-
 	</div>
 
 
-
-	
-
-
+<h1>${Auther.userid}</h1>
 </body>
 </html>

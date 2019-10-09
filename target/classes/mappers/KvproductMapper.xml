@@ -4,15 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.com.kv.mappers.KvproductMapper">
 
-	<insert id="register">
-
-		INSERT INTO product
-		(pcode, smemberid, pname, pcontent, price, dcprice, color,
-		size, pic,stock)
-		VALUES(#{pcode},#{smemberid}, #{pname},
-		#{pcontent},#{price}, #{dcprice}, #{color}, #{size}, #{pic},
-		#{stock});
-	</insert>
+		<insert id="register">
+			
+			INSERT INTO kvmall.product
+		(pcode, pname, pcontent, price, dcprice, stock, color, `size`, pic, smid, regdate)
+		VALUES(#{pcode},#{pname}, #{pcontent},#{price}, #{dcprice},#{stock}, #{color}, #{size}, #{pic},
+			#{smid}, #{regdate});
+			
+		</insert>
 
 	<select id="listAll" resultType="KvproductVO">
 		select * from product

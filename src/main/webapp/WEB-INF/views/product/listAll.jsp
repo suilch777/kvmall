@@ -133,7 +133,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<a href="#" id="comlogo">kvmall</a>
 
 			<!-- 로그인 처리 -->
-			<c:if test="${Auther == null }">
+			<c:if test="${Auther == null && sAuther == null }">
 				<!-- 로그아웃 상태 -->
 				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/slogin" id="slogin">판매하기</a>
 				<a id="tmenu" href="bord.jsp">고객센타</a>
@@ -156,9 +156,21 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 					id="logout"><span id="sp1"> ${Auther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
 			</c:if>
+			
+			<c:if test="${sAuther != null}">
+
+				<a id="tmenu" href="bord.jsp">고객센타</a>
+				<a id="tmenu" href="bord.jsp">장바구니</a>
+				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
+				<a id="tmenu"
+					href="${pageContext.request.contextPath}/product/register">상품등록</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
+					id="logout"><span id="sp1"> ${sAuther.username}님!</span>&nbsp;
+					&nbsp;로그아웃</a>
+			</c:if>
 
 		</div>
-
+${sAuther.username}${sAuther.userid}
 		<hr id="hr1">
 
 
@@ -186,7 +198,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<div id="content2">
 
 			<img id="slide"
-				src="${pageContext.request.contextPath}/resources/images/p1.jpg"
+				src="${pageContext.request.contextPath}/resources/images/banner2.jpg"
 				name="slide" > <br>
 		</div>
 		<script type="text/javascript">

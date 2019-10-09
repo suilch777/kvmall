@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.com.kv.domain.KvproductVO;
-import kr.com.kv.domain.MemberVO;
 
 @Repository
 public class kvproductDaoImpl implements kvproductDao {

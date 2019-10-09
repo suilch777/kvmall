@@ -100,7 +100,7 @@ input{
 			<label>상품갯수</label><input type="number" name ="stock" >
 		</p>
 		<p>
-			<label>mid</label> <input type="text" name = "smemberid"  value="${Auther.userid}">
+			<label>판매자 id</label> <input type="text" name = "smid"  value="${sAuther.userid}">
 			
 		</p>
 		

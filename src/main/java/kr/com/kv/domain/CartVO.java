@@ -10,6 +10,7 @@ public class CartVO {
 	private int cnt;
 	private int priceamt;
 	private Date regdate;
+	
 	public String getCmid() {
 		return cmid;
 	}
