@@ -1,6 +1,7 @@
 package kr.com.kv.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.com.kv.domain.CartVO;
+import kr.com.kv.domain.SalelistVO;
 
 @Repository
 public class SaleDaoImpl implements SaleDao {
@@ -22,15 +24,15 @@ public class SaleDaoImpl implements SaleDao {
 	}
 		
 	@Override
-	public int saleregister(CartVO crt) {
+	public int saleregister(SalelistVO slt) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace + ".saleregister",crt);
+		return sqlSession.insert(namespace + ".saleregister",slt);
 	}
 	
 	@Override
-	public CartVO cartlist(String cmember) {
+	public List<CartVO> cartlist(String cmember) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".cartlist", cmember);
+		return sqlSession.selectList(namespace + ".cartlist", cmember);
 	}
 
 	@Override

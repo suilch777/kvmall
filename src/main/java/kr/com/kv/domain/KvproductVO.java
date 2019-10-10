@@ -21,6 +21,8 @@ public class KvproductVO {
 	private String smid;
 	private Date regdate;
 	private List<String> files;
+	
+	
 	public String getPcode() {
 		return pcode;
 	}

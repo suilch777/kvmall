@@ -137,7 +137,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				<!-- 로그아웃 상태 -->
 				<a id = "tmenu" href="${pageContext.request.contextPath}/auth/slogin" id="slogin">판매하기</a>
 				<a id="tmenu" href="bord.jsp">고객센타</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist">장바구니</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist?cmid=${Auther.userid}">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/member/register">회원가입</a>
@@ -145,22 +145,22 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			</c:if>
 
 			<!-- 로그인 상태 -->
-			<c:if test="${Auther != null}">
+			<c:if test="${Auther != null && sAuther == null}">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
-				<a id="tmenu" href="bord.jsp">장바구니</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist?cmid=${Auther.userid}">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
-				<a id="tmenu"
-					href="${pageContext.request.contextPath}/product/register">상품등록</a>
+			<!-- 	<a id="tmenu"
+					href="${pageContext.request.contextPath}/product/register">상품등록</a>   -->
 				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
 					id="logout"><span id="sp1"> ${Auther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
 			</c:if>
 			
-			<c:if test="${sAuther != null}">
+			<c:if test="${sAuther != null && Auther == null}">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
-				<a id="tmenu" href="bord.jsp">장바구니</a>
+			<!-- 	<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist?cmid=${sAuther.userid}">장바구니</a>   -->
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
@@ -170,7 +170,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			</c:if>
 
 		</div>
-${sAuther.username}${sAuther.userid}
+
 		<hr id="hr1">
 
 

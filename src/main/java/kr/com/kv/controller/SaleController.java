@@ -1,5 +1,7 @@
 package kr.com.kv.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 import kr.com.kv.domain.CartVO;
-import kr.com.kv.domain.CmemberVO;
+import kr.com.kv.domain.SalelistVO;
 import kr.com.kv.service.SaleService;
 
 @Controller
@@ -53,32 +57,25 @@ public class  SaleController {
 	
 	@RequestMapping(value="saleregister", method= RequestMethod.POST)
 	@ResponseBody
-	public int saleregister(CartVO crt, HttpServletRequest request,HttpServletResponse response) throws Exception{
-		/*CartVO cVo = new CartVO();
-		cVo.setRmemberid(request.getParameter("rmemberid"));
-		KvproductVO pname =  new KvproductVO();
-		pname.setPname(request.getParameter("pname"));
-		cVo.setPname(pname);  */
+	public int saleregister(SalelistVO slt, HttpServletRequest request,HttpServletResponse response) throws Exception{
+		
 				
 		logger.info("------------- saleregisterPOST");	
-		logger.info("------------- saleregisterPOST crt="+crt);
 				
-		int res = service.saleregister(crt);
-		
-		return res;
-		
+    return	service.saleregister(slt);
+				
 	}
 	
 	@RequestMapping(value="cartlist", method=RequestMethod.GET)
-	public void cartlist(Model model, String cmid) throws Exception {
+	 public void cartlist( String cmid,Model model ) throws Exception {
 	
 		logger.info("------------ cartlist");
 		
-		CartVO vo  = service.cartlist(cmid);
-		model.addAttribute("crt", vo);
+		List<CartVO> crt  = service.cartlist(cmid);
+		model.addAttribute("crt", crt);
 		
-		logger.info("------------ cartlist"+vo);
-		
+		logger.info("------------ cartlist:"+crt);
+	
 		
 	}
 

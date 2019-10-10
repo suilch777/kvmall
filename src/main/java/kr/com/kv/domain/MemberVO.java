@@ -10,6 +10,7 @@ public class MemberVO {
 	private String tel;
 	private String email;
 	private Date regdate;
+	
 	public String getMemberid() {
 		return memberid;
 	}

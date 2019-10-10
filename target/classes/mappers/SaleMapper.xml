@@ -7,16 +7,15 @@
 	<insert id="register">
 
 		INSERT INTO kvmall.cart
-		(cmid, smid, pcode, pname, cnt, priceamt, regdate)
-		VALUES(#{cmid}, #{smid},#{pcode}, #{pname}, #{cnt}, #{priceamt},#{regdate});
+		(cmid, smid, pcode, pname, cnt, totalprice, regdate)
+		VALUES(#{cmid}, #{smid},#{pcode}, #{pname}, #{cnt}, #{totalprice},#{regdate});
 	</insert>
 
 
 	<insert id="saleregister">
 		INSERT INTO kvmall.salelist
-		(pcode, smid,cmid, pname,
-		pric, cnt)
-		VALUES(#{pcode}, #{smid},#{cmid}, #{pname}, #{pric},#{cnt});
+							(pcode, smid,cmid, pname, totalprice, cnt)
+		VALUES(#{pcode}, #{smid},#{cmid}, #{pname}, #{totalprice},#{cnt});
 
 	</insert>
 	
@@ -28,7 +27,7 @@
 <select id="cartlist"  resultType="CartVO">
 
 SELECT *
-	FROM kvmall.cart where cmember = #{cmember};
+	FROM kvmall.cart where cmid = #{cmid};
 
 </select>
 

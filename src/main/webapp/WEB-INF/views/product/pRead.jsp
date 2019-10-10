@@ -129,7 +129,7 @@ display: none;
 				var pcode = "${kvp.pcode}";
 				var pname = "${kvp.pname}";
 				var cnt = $("#count").val(); 
-				var tprice= $("#totalprice").html();
+				var tprice= $("#tprice").html();
 				var price = Number(tprice);
 				var cmid ="${Auther.userid}"
 				/* var list ={
@@ -138,7 +138,13 @@ display: none;
 					pname :"${kvp.pname}",
 					cnt : $("#count").val()
 				}; */
-				
+				if(cmid == ""){
+					alert("로그인이 필요합니다")
+					
+
+         			location.href = "${pageContext.request.contextPath}/auth/login";
+					
+				}
 				$.ajax({					
 					type : "post",
 					data : {
@@ -147,7 +153,7 @@ display: none;
 						"pcode" : pcode,
 						"pname" : pname,
 						"cnt" : cnt,
-						"priceamt":price
+						"totalprice":price
 						
 					},
 					url : "${pageContext.request.contextPath}/sale/register",
@@ -164,7 +170,56 @@ display: none;
 			});
 		});
 
-		
+		//=================== 바로구매하기  ==============================
+			
+			$(function() {
+			$("#buybtn").click(function() {
+				var smid = "${kvp.smid}";
+				var pcode = "${kvp.pcode}";
+				var pname = "${kvp.pname}";
+				var cnt = $("#count").val(); 
+				var tprice= $("#tprice").html();
+				var price = Number(tprice);
+				var cmid ="${Auther.userid}"
+				/* var list ={
+					smid :"${kvp.smid}",
+				 	pcode : "${kvp.pcode}",
+					pname :"${kvp.pname}",
+					cnt : $("#count").val()
+				}; */
+				
+				if(cmid == ""){
+					alert("로그인이 필요합니다")
+					
+
+         			location.href = "${pageContext.request.contextPath}/auth/login";
+					
+				}
+				$.ajax({					
+					type : "post",
+					data : {
+						"pcode" : pcode,
+						"smid":smid,
+					 	"cmid" : cmid,												
+						"pname" : pname,
+						"totalprice":price,
+						"cnt" : cnt						
+					},
+					url : "${pageContext.request.contextPath}/sale/salegister",
+					dataType : "Json",
+					success : function(data) {
+						if(data!=0){
+							alert("결제성공!");
+							}else{
+								alert("결제실패!");
+							}
+						
+					}
+
+				});
+			});
+		});
+
 
 	</script>
 
@@ -213,7 +268,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<c:if test="${Auther != null }">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
-				<a id="tmenu" href="bord.jsp">장바구니</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
@@ -282,7 +337,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 	<div id="pbuyform">
-		<form action="/cart/register" method="post">
+		<form action="${pageContext.request.contextPath}/sale/register" method="post">
 			<input type="hidden" name="smid" value="${kvp.smid}">
 			<label></label><input type="text" name="pcode" value="${kvp.pcode}"
 				id="pbuyformin"> <br> <span id="pbfname"
@@ -312,7 +367,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			</select> <br> <br> <label>총&nbsp;합계금액&nbsp;(수량)</label> <br> <br>
 			<div id="output"></div>
 			
-			<div id="totalprice"></div>
+			<div id="tprice"></div>
 
 <!-- ==================body--footer ============================ -->
 
@@ -338,18 +393,19 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 					$("#output").html(
 							"&#8361;" + numberWithCommas(sum) + "원" + "&nbsp;("
 									+ num + ")"); //div에 output 변수에 담은 text HTML로 출력하기
-									$("#totalprice").html(sum);
+									$("#tprice").html(sum);
 				}
 				
 			</script>
 
 
 			<br> <br>
+			
 		</form>
-		<input type="submit" name="buybtn" value="바로구매" id="buybtn"><br>
-		<br> <input type="button" name="cartbtn" value="장바구니담기"
-			id="regcart"> <input type="button" name="wishbtn" value="찜하기">
-
+		
+		<input type="button" name="buybtn" value="바로구매" id="buybtn"><br>
+		<br> <input type="button" name="cartbtn" value="장바구니담기" id="regcart"> 
+		<input type="button" name="wishbtn" value="찜하기">
 	</div>
 
 

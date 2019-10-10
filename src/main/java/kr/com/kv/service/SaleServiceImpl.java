@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.com.kv.domain.CartVO;
+import kr.com.kv.domain.SalelistVO;
 import kr.com.kv.persistence.SaleDao;
 
 @Service
@@ -21,15 +22,15 @@ public class SaleServiceImpl implements SaleService {
 	}
 	
 	@Override
-	public CartVO cartlist(String cmember) throws Exception {
+	public List<CartVO> cartlist(String cmid) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.cartlist(cmember);
+		return dao.cartlist(cmid);
 	}
 
 	@Override
-	public int saleregister(CartVO crt) {
+	public int saleregister(SalelistVO slt) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.saleregister(slt);
 	}
 
 	@Override

@@ -8,9 +8,8 @@ public class CartVO {
 	private String pcode;
 	private String pname;
 	private int cnt;
-	private int priceamt;
+	private int totalprice;
 	private Date regdate;
-	
 	public String getCmid() {
 		return cmid;
 	}
@@ -41,11 +40,11 @@ public class CartVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public int getPriceamt() {
-		return priceamt;
+	public int getTotalprice() {
+		return totalprice;
 	}
-	public void setPriceamt(int priceamt) {
-		this.priceamt = priceamt;
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -56,11 +55,9 @@ public class CartVO {
 	@Override
 	public String toString() {
 		return "CartVO [cmid=" + cmid + ", smid=" + smid + ", pcode=" + pcode + ", pname=" + pname + ", cnt=" + cnt
-				+ ", priceamt=" + priceamt + ", regdate=" + regdate + "]";
+				+ ", totalprice=" + totalprice + ", regdate=" + regdate + "]";
 	}
 	
-	
-
 	
 	
 }
