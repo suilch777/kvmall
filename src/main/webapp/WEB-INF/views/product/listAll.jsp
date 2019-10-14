@@ -130,7 +130,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 	<!-- top부분 -->
 	<div id="container">
 		<div id="top">
-			<a href="#" id="comlogo">kvmall</a>
+			<a href="${pageContext.request.contextPath}/product/listAll" id="comlogo">kvmall</a>
 
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null && sAuther == null }">
@@ -164,10 +164,14 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
+				<a id="tmenu"
+					href="${pageContext.request.contextPath}/sale/salelist?smid=${sAuther.userid}">판매리스트</a>
+				<a id="tmenu" href="${pageContext.request.contextPath}/auth/slogout"
 					id="logout"><span id="sp1"> ${sAuther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
 			</c:if>
+			
+								
 
 		</div>
 

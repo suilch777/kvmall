@@ -12,5 +12,6 @@ public interface SaleService {
 	public int saleregister(SalelistVO slt)throws Exception;
 	List<CartVO> cartlist(String cmid) throws Exception;
 	public CartVO selectcartByIdAndPcode(String cmid, String pcode);
+	List<SalelistVO> salelist(String smid) throws Exception;
 	
 }

@@ -121,9 +121,100 @@ display: none;
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-	 
+	//======================================test=======================$
+	var ajaxsale = function(url, data){
+	   
+			
+		        var smid = "${kvp.smid}";
+				var pcode = "${kvp.pcode}";
+				var pname = "${kvp.pname}";
+				var cnt = $("#count").val(); 
+				var tprice= $("#tprice").html();
+				var price = Number(tprice);
+				var cmid ="${Auther.userid}" 
+					if(cmid == ""){
+					
+						alert("로그인이 필요합니다")
+						location.href = "${pageContext.request.contextPath}/auth/login";
+						
+					}
+				
+					
+
+				var cmid ="${Auther.userid}"
+				/* var list ={
+					smid :"${kvp.smid}",
+				 	pcode : "${kvp.pcode}",
+					pname :"${kvp.pname}",
+					cnt : $("#count").val()
+				}; */
+				
+				$.ajax({					
+					type : "post",
+					data : {
+					 	 "cmid" : cmid,
+						"smid":smid,
+						"pcode" : pcode,
+						"pname" : pname,
+						"cnt" : cnt,
+						"totalprice":price
+
+						
+					},
+					url : url,
+					dataType : "Json",
+					success : data
+					});
+				}	
 	//=================== 장바구니 담기  ==============================
+		
+		
 		$(function() {
+			$("#regcart").click(function() {
+					
+				
+				ajaxsale(
+						"${pageContext.request.contextPath}/sale/register",
+						function(data){
+							if(data!=0){
+								alert("장바구니에 담았습니다!");
+							}else{
+								alert("이미 장바구니에 있습니다");
+							}
+						
+					}
+					
+			)
+		});
+	});
+
+	$(function() {
+		$("#buybtn").click(function() {
+				
+			
+			ajaxsale(
+					"${pageContext.request.contextPath}/sale/saleregister",
+					function(data){
+						if(data!=0){
+							alert("결제성공!");
+						}else{
+							alert("결제실패!");
+							}
+						
+					}
+					
+			)
+		});
+	});
+
+
+	
+	
+	
+	//=================== 장바구니 담기  ==============================
+	
+		
+	/* 	$(function() {
 			$("#regcart").click(function() {
 				  var smid = "${kvp.smid}";
 				var pcode = "${kvp.pcode}";
@@ -132,12 +223,7 @@ display: none;
 				var tprice= $("#tprice").html();
 				var price = Number(tprice);
 				var cmid ="${Auther.userid}"
-				/* var list ={
-					smid :"${kvp.smid}",
-				 	pcode : "${kvp.pcode}",
-					pname :"${kvp.pname}",
-					cnt : $("#count").val()
-				}; */
+			
 				if(cmid == ""){
 					alert("로그인이 필요합니다")
 					
@@ -147,6 +233,7 @@ display: none;
 				}
 				$.ajax({					
 					type : "post",
+					 async: false,
 					data : {
 					 	 "cmid" : cmid,
 						"smid":smid,
@@ -181,12 +268,7 @@ display: none;
 				var tprice= $("#tprice").html();
 				var price = Number(tprice);
 				var cmid ="${Auther.userid}"
-				/* var list ={
-					smid :"${kvp.smid}",
-				 	pcode : "${kvp.pcode}",
-					pname :"${kvp.pname}",
-					cnt : $("#count").val()
-				}; */
+			
 				
 				if(cmid == ""){
 					alert("로그인이 필요합니다")
@@ -197,6 +279,7 @@ display: none;
 				}
 				$.ajax({					
 					type : "post",
+					async: false,
 					data : {
 						"pcode" : pcode,
 						"smid":smid,
@@ -220,7 +303,7 @@ display: none;
 			});
 		});
 
-
+ */
 	</script>
 
 
@@ -249,7 +332,7 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 	<div id="container">
 		<div id="top">
-			<a href="#" id="comlogo">kvmall</a>
+			<a href="${pageContext.request.contextPath}/product/listAll" id="comlogo">kvmall</a>
 
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null }">
@@ -272,6 +355,8 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
+				<a id="tmenu"
+					href="${pageContext.request.contextPath}/sale/salelist">판매리스트</a>
 				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
 					id="logout"><span id="sp1">${Auther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>

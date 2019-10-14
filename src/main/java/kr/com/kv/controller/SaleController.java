@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import kr.com.kv.domain.CartVO;
+import kr.com.kv.domain.CmemberVO;
 import kr.com.kv.domain.SalelistVO;
 import kr.com.kv.service.SaleService;
 
@@ -79,6 +80,23 @@ public class  SaleController {
 		
 	}
 
+	@RequestMapping(value="salelist", method=RequestMethod.GET)
+	 public void salelist( String smid,Model model, CmemberVO cmv)throws Exception {
+	
+		logger.info("------------ salelist");
+		
+		List<SalelistVO> slist  = service.salelist(smid);
+		
+		
+		model.addAttribute("slist", slist);
+		
+		
+		logger.info("------------ stlist:"+slist);
+		
+		
+	
+		
+	}
 
 }
 		

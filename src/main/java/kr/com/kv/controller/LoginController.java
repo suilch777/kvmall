@@ -87,8 +87,7 @@ public class LoginController {
 		if(dbMember == null) {
 			logger.info("sloginPOST ...... slogin fail, not member");
 		
-			return "auth/sloginPost";
-			
+			return "/auth/slogin";
 		}
 		else {
 						
@@ -98,6 +97,7 @@ public class LoginController {
 		dto.setUsername(dbMember.getName());
 		model.addAttribute("sloginDTO", dto);
 		
+		String smid= dto.getUserid();
 		
 		session.setAttribute("sAuther", dto);
 		
@@ -121,7 +121,22 @@ public class LoginController {
 		msg = "로그아웃 하시겠습닜까?";
 		
 	}
-	}
+	
+
+@RequestMapping(value="slogout", method=RequestMethod.GET)
+public String slogout(HttpSession session) {
+	logger.info("-------- logout GET");
+	alert(msg);
+     
+	session.removeAttribute("sAuther");
+        // /페이지로 리다이렉트 시킨다.
+        return "redirect:/product/listAll";
+    }
+
+
+	
+}
+
 
 
 

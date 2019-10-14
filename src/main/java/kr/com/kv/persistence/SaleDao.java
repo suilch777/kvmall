@@ -17,6 +17,8 @@ public interface SaleDao {
 
 	public int saleregister(SalelistVO slt);
 
+	public List<SalelistVO> salelist(String smid);
+
 	
 	
 	

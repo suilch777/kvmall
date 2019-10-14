@@ -71,6 +71,10 @@ padding:10px;
 table{
 width:100%;
 }
+
+#cminfo{
+text-align: left !important;
+}
 </style>
 </head>
 <body id="bodyall">
@@ -109,7 +113,9 @@ width:100%;
 				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist?cmid=${Auther.userid}">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
-					href="${pageContext.request.contextPath}/product/register">상품등록</a>
+					href="${pageContext.request.contextPath}/sale/salelist">상품등록</a>
+				<a id="tmenu"
+					href="${pageContext.request.contextPath}/sale/salelist">판매리스트</a>
 				<a id="tmenu" href="${pageContext.request.contextPath}/auth/logout"
 					id="logout"><span id="sp1"> ${sAuther.username}님!</span>&nbsp;
 					&nbsp;로그아웃</a>
@@ -123,19 +129,25 @@ width:100%;
 	<hr id="hr1">
 <table >
 <tr>
-<th>상품/옵션정보</th><th>수량</th><th>상품금액</th><th>할인금액</th><th>할인적용금액</th><th>배송비</th><th>주문</th>
+<th>상품/옵션정보</th><th>수량</th><th>판매금액</th><th>고객정보</th><th>결재일</th><th>배송</th><th>도착일</th><th>송금</th>
 </tr>
-<c:forEach var="cart" items="${crt }">
+<c:forEach var="slist" items="${slist}">
 								<tr>
-									<td>${cart.pname }</td>
-									<td>	${cart.cnt }		</td>
-									<td>${cart.totalprice }</td>
-									<td></td>
-									<td>${cart.totalprice }</td>
-									<td></td>
-									<td><button id="orderbtn">주문하기</button><br><br>
-									<button id="dellbtn">삭제하기</button>
+									<td>${slist.pname }</td>
+									<td>	${slist.cnt }		</td>
+									<td>${slist.totalprice}</td>
+									<td><span id="cminfo">이름:${slist.cmid.name}<br>
+									전화번호:${slist.cmid.tel}<br>
+									배송주소:${slist.cmid.addr}<br>
+									</span>								
+									
 									</td>
+									<td><fmt:formatDate value="${slist.paydate}" pattern="yyyy-MM-dd-hh-mm-ss"/></td>
+									
+									<td><button id="fwdbtn">배송</button>${slist.fwddate}</td>
+									<td>${slist.rcvdate}</td>
+									<td>${slist.stldate}</td>
+									
 									
 								</tr>
 							</c:forEach>

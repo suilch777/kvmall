@@ -43,4 +43,10 @@ public class SaleDaoImpl implements SaleDao {
 				
 		return sqlSession.selectOne(namespace+".selectcartByIdAndPcode",map);
 	}
+
+	@Override
+	public List<SalelistVO> salelist(String smid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".salelist", smid);
+	}
 }

@@ -3,7 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.com.kv.mappers.SaleMapper">
+	
 
+	
 	<insert id="register">
 
 		INSERT INTO kvmall.cart
@@ -29,6 +31,28 @@
 SELECT *
 	FROM kvmall.cart where cmid = #{cmid};
 
+</select>
+
+<resultMap type="SalelistVO" id="Salelistmap">
+	<id column="pcode" property="pcode"/>
+	<result column="smid" property="smid"/>
+	<result column="pname" property="pname"/>
+	<result column="totalprice" property="totalprice"/>
+	<result column="cnt" property="cnt"/>
+	<result column="paydate" property="paydate"/>
+	<result column="fwddate" property="fwddate"/>
+	<result column="rcvdate" property="rcvdate"/>
+	<result column="stldate" property="stldate"/>
+	
+	<result column="name" property="cmid.name"/>
+	<result column="tel" property="cmid.tel"/>
+	 <result column="addr" property="cmid.addr"/>
+</resultMap>
+
+<select id="salelist" resultMap="Salelistmap">
+	select s.*, c.name, c.tel, c.addr
+	from salelist s join cmember c on s.cmid = c.cmid where smid = #{smid}; 
+	
 </select>
 
 

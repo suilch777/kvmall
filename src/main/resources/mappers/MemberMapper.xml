@@ -52,6 +52,7 @@
 		smember where smid=#{userid} and password=#{userpw}
 	</select>
 	
+	
 		<select id="selectcMemberByIdAndPw" resultType="cmemberVO">
 		select * from
 		cmember where cmid=#{userid} and password=#{userpw}

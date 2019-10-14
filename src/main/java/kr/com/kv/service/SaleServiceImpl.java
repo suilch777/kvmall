@@ -38,4 +38,10 @@ public class SaleServiceImpl implements SaleService {
 		// TODO Auto-generated method stub
 		return dao.selectcartByIdAndPcode(cmid, pcode);
 		}
+
+	@Override
+	public List<SalelistVO> salelist(String smid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.salelist(smid);
+	}
 }
