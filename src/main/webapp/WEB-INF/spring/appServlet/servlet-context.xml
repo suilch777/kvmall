@@ -37,24 +37,25 @@
 	
 	<context:component-scan base-package="kr.com.kv.controller" />
 	
-	<!-- 
+	
 	<beans:bean id="loginInterceptor" class="kr.com.kv.interceptor.LoginInterceptor"></beans:bean>
 	<beans:bean id="authInterceptor" class="kr.com.kv.interceptor.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
+		
 			<mapping path="/auth/loginPost" />
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/sboard/register"/>
-			<mapping path="/sboard/readPage"/>
-			<mapping path="/sboard/modifyPage"/>
+		
+			<mapping path="/sale/register"/>
+			<mapping path="/sale/saleregister"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
-	 -->
+
 	
 </beans:beans>

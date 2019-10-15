@@ -1,7 +1,6 @@
 package kr.com.kv.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class SalelistVO {
 private String pcode;
@@ -15,6 +14,7 @@ private Date paydate;
 private Date fwddate;
 private Date rcvdate;
 private Date stldate;
+
 public String getPcode() {
 	return pcode;
 }

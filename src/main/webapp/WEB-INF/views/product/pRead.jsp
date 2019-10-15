@@ -112,8 +112,8 @@ img {
 	text-align: center;
 }
 
-#totalprice{
-display: none;
+#totalprice {
+	display: none;
 }
 </style>
 
@@ -132,7 +132,7 @@ display: none;
 				var tprice= $("#tprice").html();
 				var price = Number(tprice);
 				var cmid ="${Auther.userid}" 
-					if(cmid == ""){
+				 if(cmid == ""){
 					
 						alert("로그인이 필요합니다")
 						location.href = "${pageContext.request.contextPath}/auth/login";
@@ -141,13 +141,8 @@ display: none;
 				
 					
 
-				var cmid ="${Auther.userid}"
-				/* var list ={
-					smid :"${kvp.smid}",
-				 	pcode : "${kvp.pcode}",
-					pname :"${kvp.pname}",
-					cnt : $("#count").val()
-				}; */
+				var cmid ="${Auther.userid}" 
+				
 				
 				$.ajax({					
 					type : "post",
@@ -158,62 +153,82 @@ display: none;
 						"pname" : pname,
 						"cnt" : cnt,
 						"totalprice":price
-
-						
 					},
 					url : url,
-					dataType : "Json",
-					success : data
-					});
-				}	
-	//=================== 장바구니 담기  ==============================
-		
-		
-		$(function() {
-			$("#regcart").click(function() {
-					
-				
-				ajaxsale(
-						"${pageContext.request.contextPath}/sale/register",
-						function(data){
-							if(data!=0){
-								alert("장바구니에 담았습니다!");
-							}else{
-								alert("이미 장바구니에 있습니다");
-							}
-						
-					}
-					
-			)
+					dataType: ' json',
+					async:false,
+				/*  beforeSend : function(xmlHttpRequest){
+			                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
+			            },
+			            success:function(resultData) {
+			            	func(returnData);
+			            },
+			        error: function(e){
+			            	if(e.resultCode == 300){
+			            		alert("", returnData, resultMsg, "error");
+			            	}
+			          	  if(e.status ==400){
+			            	alert("","Auther값이 존재하지 않습니다. 3초후 로그인 페이지로 이동 됩니다", "erroe");
+			            	var offset = location.href.indexOf(location.host)+location.host.length;
+			            	var ctxPath = location.href.substring(offset, location.href.indexOf('/',offset+1));
+			            	setTimeout("location.href='"+ctxPath+"/auth/login'",1000);
+			            }
+				  }
+			               
+			        
 		});
+
+	}
+ */
+	 dataType : "Json",
+	success : data
+	}); 
+	}
+
+	//=================== 장바구니 담기  ==============================
+
+	$
+	(function() {
+		$("#regcart").click(
+				function() {
+
+					ajaxsale(
+							"${pageContext.request.contextPath}/sale/register",
+							function(data) {
+								if (data != 0) {
+									alert("장바구니에 담았습니다!");
+								} else {
+									alert("이미 장바구니에 있습니다");
+								}
+
+							}
+
+					)
+				});
 	});
 
 	$(function() {
-		$("#buybtn").click(function() {
-				
-			
-			ajaxsale(
-					"${pageContext.request.contextPath}/sale/saleregister",
-					function(data){
-						if(data!=0){
-							alert("결제성공!");
-						}else{
-							alert("결제실패!");
-							}
-						
-					}
-					
-			)
-		});
+		$("#buybtn")
+				.click(
+						function() {
+
+							ajaxsale(
+									"${pageContext.request.contextPath}/sale/saleregister",
+									function(data) {
+										if (data != 0) {
+											alert("결제성공!");
+										} else {
+											alert("결제실패!");
+										}
+
+									}
+
+							)
+						});
 	});
 
-
-	
-	
-	
 	//=================== 장바구니 담기  ==============================
-	
-		
+
 	/* 	$(function() {
 			$("#regcart").click(function() {
 				  var smid = "${kvp.smid}";
@@ -228,7 +243,7 @@ display: none;
 					alert("로그인이 필요합니다")
 					
 
-         			location.href = "${pageContext.request.contextPath}/auth/login";
+	     			location.href = "${pageContext.request.contextPath}/auth/login";
 					
 				}
 				$.ajax({					
@@ -274,7 +289,7 @@ display: none;
 					alert("로그인이 필요합니다")
 					
 
-         			location.href = "${pageContext.request.contextPath}/auth/login";
+	     			location.href = "${pageContext.request.contextPath}/auth/login";
 					
 				}
 				$.ajax({					
@@ -303,8 +318,8 @@ display: none;
 			});
 		});
 
- */
-	</script>
+	 */
+</script>
 
 
 
@@ -332,7 +347,8 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 	<div id="container">
 		<div id="top">
-			<a href="${pageContext.request.contextPath}/product/listAll" id="comlogo">kvmall</a>
+			<a href="${pageContext.request.contextPath}/product/listAll"
+				id="comlogo">kvmall</a>
 
 			<!-- 로그인 처리 -->
 			<c:if test="${Auther == null }">
@@ -351,7 +367,8 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 			<c:if test="${Auther != null }">
 
 				<a id="tmenu" href="bord.jsp">고객센타</a>
-				<a id="tmenu" href="${pageContext.request.contextPath}/sale/cartlist">장바구니</a>
+				<a id="tmenu"
+					href="${pageContext.request.contextPath}/sale/cartlist">장바구니</a>
 				<a id="tmenu" href="timeTable.jsp">나의kvmall</a>
 				<a id="tmenu"
 					href="${pageContext.request.contextPath}/product/register">상품등록</a>
@@ -422,11 +439,11 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 
 
 	<div id="pbuyform">
-		<form action="${pageContext.request.contextPath}/sale/register" method="post">
-			<input type="hidden" name="smid" value="${kvp.smid}">
-			<label></label><input type="text" name="pcode" value="${kvp.pcode}"
-				id="pbuyformin"> <br> <span id="pbfname"
-				style="text-decoration: underline;">${kvp.pname}<input
+		<form action="${pageContext.request.contextPath}/sale/register"
+			method="post">
+			<input type="hidden" name="smid" value="${kvp.smid}"> <label></label><input
+				type="text" name="pcode" value="${kvp.pcode}" id="pbuyformin">
+			<br> <span id="pbfname" style="text-decoration: underline;">${kvp.pname}<input
 				type="text" name="pname" value="${kvp.pname}" id="pbuyformin"></span>
 			<br> <br> <br> ${kvp.pcontent}<br> <br> <br>
 			<label>가격</label><span style="text-decoration: line-through;">
@@ -451,10 +468,10 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 				</c:forEach>
 			</select> <br> <br> <label>총&nbsp;합계금액&nbsp;(수량)</label> <br> <br>
 			<div id="output"></div>
-			
+
 			<div id="tprice"></div>
 
-<!-- ==================body--footer ============================ -->
+			<!-- ==================body--footer ============================ -->
 
 
 			<script type="text/javascript">
@@ -478,22 +495,21 @@ image3.src ="${pageContext.request.contextPath}/resources/images/slide-3.jpg";
 					$("#output").html(
 							"&#8361;" + numberWithCommas(sum) + "원" + "&nbsp;("
 									+ num + ")"); //div에 output 변수에 담은 text HTML로 출력하기
-									$("#tprice").html(sum);
+					$("#tprice").html(sum);
 				}
-				
 			</script>
 
 
 			<br> <br>
-			
+
 		</form>
-		
+
 		<input type="button" name="buybtn" value="바로구매" id="buybtn"><br>
-		<br> <input type="button" name="cartbtn" value="장바구니담기" id="regcart"> 
-		<input type="button" name="wishbtn" value="찜하기">
+		<br> <input type="button" name="cartbtn" value="장바구니담기"
+			id="regcart"> <input type="button" name="wishbtn" value="찜하기">
 	</div>
 
 
-<h1>${Auther.userid}</h1>
+	<h1>${Auther.userid}</h1>
 </body>
 </html>

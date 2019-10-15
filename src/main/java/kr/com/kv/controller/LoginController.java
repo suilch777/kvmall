@@ -34,6 +34,7 @@ public class LoginController {
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public void loginGET() {
 		logger.info("-------- login GET");
+		
 	
 	}
 	
@@ -48,7 +49,7 @@ public class LoginController {
 		if(dbMember == null) {
 			logger.info("loginPOST ...... login fail, not member");
 		
-			return "auth/loginPost";
+			return "${pageContext.request.contextPath}/product/liastAll";
 			
 		}
 		else {

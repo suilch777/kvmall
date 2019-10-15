@@ -15,7 +15,7 @@ public interface SaleDao {
 
 	public	CartVO selectcartByIdAndPcode(String cmid, String pcode);
 
-	public int saleregister(SalelistVO slt);
+	public int saleregister(SalelistVO slt)throws Exception;
 
 	public List<SalelistVO> salelist(String smid);
 
